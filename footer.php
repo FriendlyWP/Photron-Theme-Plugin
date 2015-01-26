@@ -1,5 +1,5 @@
 			<footer class="footer" role="contentinfo">
-
+				
 				<div id="inner-footer" class="wrap cf">
 					<?php if ( has_nav_menu( 'footer-nav' ) ) { ?>
 					<nav role="navigation">	
@@ -57,12 +57,17 @@
 				</div>
 
 			</footer>
-
+		
 		</div>
 
 		<?php // all js scripts are loaded in library/bones.php ?>
 		<?php wp_footer(); ?>
-
+		<script type="text/javascript" language="javascript">
+            jQuery(document).ready(function($) {
+            	var options = { videoId: 'ab0TSkLe-E0', start: 3 };
+	//$('#vid-container').tubular(options);
+            });
+        </script>
 	</body>
 
 </html> <!-- end of site. what a ride! -->

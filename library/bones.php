@@ -124,8 +124,12 @@ function bones_scripts_and_styles() {
 			wp_enqueue_style( 'fontawesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
 		}
 
+		//adding tubular
+		wp_register_script( 'tubular', get_stylesheet_directory_uri() . '/library/js/libs/tubular/js/jquery.tubular.1.0.js', array( 'jquery' ), '', false );
+
 		// enqueue styles and scripts
 		wp_enqueue_script( 'bones-modernizr' );
+		wp_enqueue_script( 'tubular' );
 		wp_enqueue_style( 'bones-stylesheet' );
 		wp_enqueue_style( 'bones-ie-only' );
 

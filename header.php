@@ -52,8 +52,8 @@
 
 	<body <?php body_class(); ?>>
 		<a class="skip" href="#content">Skip to Content</a>
-
 		<div id="container">
+
 
 			<header class="header" role="banner">
 

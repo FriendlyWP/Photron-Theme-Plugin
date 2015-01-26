@@ -2,6 +2,10 @@
     overflow: visible !important;
 }
 
+html {
+	background:url('../images/owl.jpg') transparent no-repeat;
+}
+
 body {
 	height:100%;
 	font-family: $sans-serif;
@@ -9,7 +13,7 @@ body {
 	line-height: 1.5;
 	color: $text-color;
   	-webkit-font-smoothing: antialiased;
-  	background-color:$black;
+  	background-color:transparent;
 }
 
 .hide {
@@ -39,11 +43,11 @@ body {
 }
 
 #content {
-	background-color:$white;
+	background-color:transparent;
 }
 
 .header {
-	background-color: $black;
+	background-color: transparent;
 	color:$white;
 	padding:0;
 }
@@ -171,7 +175,7 @@ POSTS & CONTENT STYLES
 *********************/
 
 .hentry {
-	background-color: $white;
+	background-color: transparent;
 	margin-bottom: 1.5em;
 
 
@@ -482,7 +486,7 @@ FOOTER STYLES
 
 .footer {
 	clear: both;
-	background-color: $black;
+	background-color: transparent;
 	color: $light-gray;
 	padding:1em 0;
 	font-size:.9em;
