@@ -7,46 +7,67 @@ NAVIGATION STYLES
 }
 
 #my-content #my-menu {
-  /* display: none; */
+   display: none; 
 }
 
 #my-menu:not( .mm-menu ) {
- /* display: none; */
+  display: none; 
+}
+
+.social-search {
+	font-size:.8em;
+
+	@include breakpoint(laptop) {
+		float:right;
+		width: 30%;
+		text-align: right;
+	}
+}
+
+.main-menu {
+	
+
+	@include breakpoint(laptop) {
+		float:left;
+		width: 66%;
+	}
 }
 .topbar {
-	background-color:$red;
+	background-color:$black;
 	padding:.25em 1em;
 	margin-bottom:1em;
 	text-align: center;
 	vertical-align: top;
 	position: relative;
+	border-top:1px solid $light-black;
+	box-shadow:2px 2px 3px $light-black;
 
 
 	@include breakpoint(laptop) {
 		padding: 5px 0 4px;
-		background-color:transparent;
-		text-align: right;
 		/* position:absolute;
 		top:.25em;
 		right:0; */
-		font-size:.8em;	
+
 		line-height: 1em;
 	}
 
 	.login, input, .social-nav > li > a {
 		display: inline-block;
-		height:40px;
-		line-height: 40px;
+		height:30px;
+		line-height: 30px;
 		vertical-align: top;
 	}
 
 	.social-nav li a {
 		padding: 0 .75em;
 		vertical-align: middle;
+		color:$meta-color;
+		font-size: .8em;
 
 		i {
 			display: inline-block;
-			line-height: 40px;
+			line-height: 30px;
 		}
 
 	}
@@ -61,30 +82,42 @@ NAVIGATION STYLES
 	}
 
 	.searchform {
-		width: 30%;
+		width: 50%;
 		position:relative;
 		display: inline-block;
+		text-align: right;
+		color: $meta-color;
 
 		input, button {
 			margin:0;
 			float:left;
+			padding-right:2.1rem;
 		}
 
 		input {
-			width: 82%;
-			margin-right:2%;
+			width:100%;
+			color:$meta-color;
+			background-color:$light-black;
 		}
 
 		button {
-			position: relative;
+			position: absolute;
 			background-color:transparent;
 			border: none;
-			font-size: 26px;
-			line-height: 40px;
+			font-size: 20px;
+			line-height: 26px;
+			right:-1.5rem;
+			color: $meta-color;
 		}
 	}
 
+	.social-nav {
+		width: 36%;
+	}
+
 }
+
+
 .menu-toggler {
 	border: none;
 	font-size:2em;
@@ -97,8 +130,15 @@ NAVIGATION STYLES
 
 #menu-social-menu {
 	display:none;
+
 	@include breakpoint(laptop) {
 		display:inline-block;
+		text-align: right;
+
+		li {
+			float: none;
+			display: inline-block;
+		}
 	}
 }
 
@@ -108,11 +148,15 @@ NAVIGATION STYLES
 }
 
 .top-nav {
+
 	.menu-item-has-children {
 		& > a:after {
-			padding-left:.5em;
+			padding-left:.3em;
+			font-size: .8em;
 			content:"\f101";
 			font-family: FontAwesome;
+			width:.8rem;
+			display: inline-block;
 		}
 	}
 
@@ -120,6 +164,7 @@ NAVIGATION STYLES
 		&:hover {
 			> a:after {
 				content:"\f103";
+				width:.8rem;
 			}
 		}
 	}
@@ -154,12 +199,15 @@ NAVIGATION STYLES
 	} */
 
 	li {
+		list-style: none;
 
 		a, a:visited {
 			display: block;
 			color: $white;
 			border: none;
 			padding: 0.75em;
+			font-size:1.1em;
+			text-transform: uppercase;
 
 			&:hover, &:focus {
 				color: $white;
@@ -197,6 +245,7 @@ NAVIGATION STYLES
 						border-right: 0;
 						display: block;
 						width: 180px;
+						text-transform: none;
 						border-bottom: 1px dotted $white;
 
 						&:hover,

@@ -150,9 +150,39 @@ function custom_mime_types( $post_mime_types ) {
 // remove dimensions from oEmbed videos
 add_filter( 'embed_oembed_html', 'tdd_oembed_filter', 10, 4 ) ; 
 function tdd_oembed_filter($html, $url, $attr, $post_ID) {
+   // $html = preg_replace("@src=(['\"])?([^'\">\s]*)@", "src=$1$2&showinfo=0&rel=0&autohide=1&controls=0&HD=1&autoplay=1", $html);
     $return = '<figure class="video-container">'.$html.'</figure>';
+
     return $return;
 }
+
+// customize embed settings
+function custom_youtube_settings($code){
+  if(strpos($code, 'youtu.be') !== false || strpos($code, 'youtube.com') !== false){
+    $return = preg_replace("@src=(['\"])?([^'\">\s]*)@", "src=$1$2&showinfo=0&rel=0&autohide=1&controls=0&HD=1&autoplay=1", $code);
+    return $return;
+  }
+  return $code;
+}
+ 
+//add_filter('embed_handler_html', 'custom_youtube_settings');
+//add_filter('embed_oembed_html', 'custom_youtube_settings');
+
+// Filter video output 
+add_filter('oembed_result','lc_oembed_result', 10, 3);
+function lc_oembed_result($html, $url, $args) {
+  // $args includes custom argument
+  $newargs = $args;
+
+  // get rid of discover=true argument
+  array_pop( $newargs );
+
+  $parameters = http_build_query( $newargs );
+  
+  // Modify video parameters
+  $html = str_replace( '?feature=oembed', '?feature=oembed'.'&amp;'.$parameters, $html );
+  return $html;
+} 
 
 /**************** SHORTCODES ***************/
 
@@ -171,3 +201,6 @@ if( function_exists('acf_add_options_sub_page') )
 
 /**** MENU SOCIAL ICONS ****/
 add_filter( 'storm_social_icons_use_latest', '__return_true' );
+
+
+
