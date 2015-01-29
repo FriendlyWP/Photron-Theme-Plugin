@@ -1,3 +1,77 @@
 .widget {
 	margin-bottom:1.5em;
+	padding: 1.5em;
+	color:$white;
+
+	a, a:visited {
+		color:$white;
+		border: none;
+
+	}
+
+	.footer & {
+		width: 28.8461538%;
+		margin-right:6.7307692%;	
+		float:left;
+		padding:0;
+
+		&.span-2 {
+			width:57.6923076%;
+			width: 64.4231452%;
+		}
+
+		&:last-of-type {
+			margin-right:0;
+		}
+	}
+}
+
+.widgettitle {
+	
+	.footer & {
+		color:$yellow;
+		border-bottom: 1px solid $light-orange;
+		font-weight: 300;
+	}
+}
+
+.sidebar {
+	margin-top:-.75em;
+
+	.widget {
+		border:.75em solid $black;
+	}
+	.widget-even {
+		background-color: $dark-purple;
+	}
+
+	.widget-odd {
+		background-color: $light-blue;
+	}	
+
+	.advanced-sidebar-menu {
+		background-color:$orange;
+	}
+}
+
+
+.parent-sidebar-menu {
+	margin-left:0;
+	list-style-type: none;
+
+	> li > a {
+		font-size: 1.2em;
+	}
+
+	.current_page_item {
+
+		> a {
+			color:$lightest-yellow;
+		}
+	}
+}
+
+.child-sidebar-menu {
+	font-size:1.1em;
+	list-style-type: square;
 }

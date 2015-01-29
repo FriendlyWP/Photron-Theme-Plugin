@@ -1,0 +1,25 @@
+{
+    "key": "group_54c90a8740fbc",
+    "title": "Video Gallery Category Image",
+    "fields": [
+
+    ],
+    "location": [
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "video-category"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+
+    ],
+    "modified": 1422461575
+}

@@ -1,6 +1,15 @@
 			<footer class="footer" role="contentinfo">
 				
 				<div id="inner-footer" class="wrap cf">
+
+					<?php if ( is_active_sidebar( 'footer1' ) ) : ?>
+
+						<?php dynamic_sidebar( 'footer1' ); ?>
+
+					<?php else : ?>
+
+					<?php endif; ?>
+
 					<?php if ( has_nav_menu( 'footer-nav' ) ) { ?>
 					<nav role="navigation">	
 						<?php wp_nav_menu(array(

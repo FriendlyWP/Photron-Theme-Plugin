@@ -15,11 +15,11 @@ Template Name: Home Page
 				// PARAMETERS LIST: https://developers.google.com/youtube/player_parameters#loop
 				?>
 				<!-- PLAYLIST VERSION-->
-				<div class="video-container fullback"><iframe src="http://www.youtube.com/embed/b56tadIKKSw?autoplay=1&rel=0&showinfo=0&controls=0&loop=1&listType=playlist&list=PLo1FmDpu7xGcKSg4GqGTVq1dcSueBan0G" frameborder="0" allowfullscreen></iframe>​</div>
+				<div class="video-container fullback"><iframe src="http://www.youtube.com/embed/b56tadIKKSw?autoplay=0&rel=0&showinfo=0&controls=0&loop=1&listType=playlist&list=PLo1FmDpu7xGcKSg4GqGTVq1dcSueBan0G&wmode=transparent" frameborder="0" allowfullscreen></iframe>​</div>
 				<!-- SINGLE VIDEO VERSION -->
 				<!-- THIS DOES NOT WORK YET, WMODE AND ZINDEX NOT RESPECTED SO NO CONTENT SHOWS ON TOP
-				 <div class="video-container fullback"><iframe src="http://www.youtube.com/v/LA6XSrM0V_0?autoplay=1&rel=0&showinfo=0&controls=0&loop=1&playlist=LA6XSrM0V_0&wmode=Opaque" frameborder="0" allowfullscreen></iframe>​</div> -->
-				<div id="inner-content" class="wrap cf">
+				 <div class="video-container fullback"><iframe src="http://www.youtube.com/v/LA6XSrM0V_0?autoplay=1&rel=0&showinfo=0&controls=0&loop=1&playlist=LA6XSrM0V_0&wmode=transparent" frameborder="0" allowfullscreen></iframe>​</div> -->
+					<div id="inner-content" class="wrap cf">
 
 						<div id="main" class="main-content cf" role="main">
 
@@ -33,12 +33,15 @@ Template Name: Home Page
 
 								<section class="entry-content cf" itemprop="articleBody">
 									<?php
-										// the content (pretty self explanatory huh)
+
 										the_content();
+
 									?>
 								</section> <?php // end article section ?>
 
 							</article>
+
+							
 
 							<?php endwhile; else : ?>
 
@@ -58,10 +61,37 @@ Template Name: Home Page
 
 						</div>
 
-						<?php //get_sidebar(); ?>
+					</div><!-- #inner-content -->
+					
+				
+			
+			</div><!-- #content -->
 
-				</div>
+			<?php if (function_exists('get_field')) {
 
-			</div>
+						if( have_rows('blocks') ) {
+							echo '<div class="home-footer">';
+							echo '<div class="home-blocks wrap cf">';
+
+						    while ( have_rows('blocks') ) : the_row();
+
+							
+							if (get_sub_field('block')) {
+									echo '<div>';
+									echo '<h4>' . get_sub_field('block_title') . '</h4>';
+										echo '<span>';
+										echo get_sub_field('block');
+										echo '</span>';
+									echo '</div>';
+								}
+
+							
+
+						endwhile;
+							echo '</div></div>'; 
+						}
+
+					}
+				?>
 
 <?php get_footer(); ?>

@@ -83,13 +83,23 @@ new image size.
 function bones_register_sidebars() {
 	register_sidebar(array(
 		'id' => 'sidebar1',
-		'name' => __( 'Sidebar 1', 'bonestheme' ),
+		'name' => __( 'Sidebar Widgets', 'bonestheme' ),
 		'description' => __( 'The first (primary) sidebar.', 'bonestheme' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h4 class="widgettitle">',
 		'after_title' => '</h4>',
 	));
+
+  register_sidebar(array(
+    'id' => 'footer1',
+    'name' => __( 'Footer Widgets', 'bonestheme' ),
+    'description' => __( 'Widgets which appear in the site footer.', 'bonestheme' ),
+    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    'after_widget' => '</div>',
+    'before_title' => '<h4 class="widgettitle">',
+    'after_title' => '</h4>',
+  ));
 
 } // don't remove this bracket!
 
@@ -203,4 +213,12 @@ if( function_exists('acf_add_options_sub_page') )
 add_filter( 'storm_social_icons_use_latest', '__return_true' );
 
 
+// FILTER WORDPRESS SEO BY YOAST outputs in the WordPress control panel
+// remove WP-SEO columns from edit-list pages in admin
+add_filter( 'wpseo_use_page_analysis', '__return_false' );
 
+// put WP-SEO panel at bottom of edit screens (low priority)
+add_filter('wpseo_metabox_prio' , 'my_wpseo_metabox_prio' );
+function my_wpseo_metabox_prio() {
+  return 'low' ;                                
+}

@@ -196,3 +196,39 @@ input[type="file"] {
     background-color: transparent;
   }
 }
+
+
+.newsletter-widget {
+  .gform_wrapper {
+    position: relative;
+  }
+
+  .gform_body {
+    input {
+      padding-right:3.5em;
+    }
+  }
+
+  .gform_footer {
+    position:absolute;
+    display: inline-block;
+    right:.5em;
+    top:.5em;
+  }
+
+  .button {
+    background-color: transparent;
+    border: none;
+    text-transform: uppercase;
+    color:$light-orange;
+    font-size:1.1em;
+    font-weight: 700;
+    text-shadow: none;
+    box-shadow: none;
+
+    &:hover {
+      background-color: transparent;
+      color:$lightest-orange;
+    }
+  }
+}

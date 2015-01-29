@@ -13,12 +13,12 @@ http://galp.in/blog/2011/08/02/the-ui-guide-part-1-buttons/
   color: $white;
   font-size: 0.9em;
   font-weight: normal;
-  padding: .2em .5em .3em;
-  border-radius: .2em;
+  padding: 0 .5em .4em;
   border: 0;
   cursor: pointer;
   line-height: 1.5em;
   vertical-align: middle;
+  box-shadow:1px 1px 1px $light-black;
   @include transition(background-color 0.14s ease-in-out);
 
   // hovering on the btn
@@ -53,3 +53,17 @@ and it will create a button dependant on those variables.
   } // end active
 
 } // end blue button
+
+.button.orange {
+  @extend %btn; // here we load the btn defaults
+  background-color: $light-orange;
+
+  &:hover,
+  &:focus {
+    background-color: $orange;
+  } // end hover
+
+  &:active {
+    background-color: $dark-orange;
+  } // end active
+}

@@ -140,6 +140,20 @@
 
 				</div>
 
+				<!-- <div id="logo-wrap" class="cf">
+					<div class="logo-left"> &nbsp;</div>
+					<div class="wrap">
+
+						<a href="<?php echo home_url(); ?>" id="logo" rel="nofollow" title="<?php bloginfo('name'); ?>"><img itemprop="logo" src="<?php echo get_template_directory_uri(); ?>/library/images/photron-logo.png" alt="<?php bloginfo('name'); ?>" /></a>
+
+						<?php $desc = get_bloginfo('description'); 
+						if ($desc) { ?>
+							<span class="site-description"><?php echo $desc; ?></span>
+						<?php } ?>		
+					</div>
+					<div class="logo-right">&nbsp;</div>
+				</div> -->
+
 				
 
 				<script type="text/javascript">
