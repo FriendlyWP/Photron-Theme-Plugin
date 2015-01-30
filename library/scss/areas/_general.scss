@@ -82,7 +82,7 @@ body {
 #content {
 	background-color:transparent;
 	position:relative;
-	margin-top:150px;
+	margin-top:100px;
 
 	.home & {
 		min-height: 700px;
@@ -112,6 +112,8 @@ body {
 	width:100%;
 	height:130px;
 	z-index:10000;
+
+
 background: -moz-linear-gradient(top,  rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.3) 64%, rgba(0,0,0,0.1) 80%, rgba(0,0,0,0) 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.65)), color-stop(64%,rgba(0,0,0,0.3)), color-stop(80%,rgba(0,0,0,0.1)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
 background: -webkit-linear-gradient(top,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.3) 64%,rgba(0,0,0,0.1) 80%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
@@ -119,15 +121,24 @@ background: -o-linear-gradient(top,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.3) 64%,rgb
 background: -ms-linear-gradient(top,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.3) 64%,rgba(0,0,0,0.1) 80%,rgba(0,0,0,0) 100%); /* IE10+ */
 background: linear-gradient(to bottom,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.3) 64%,rgba(0,0,0,0.1) 80%,rgba(0,0,0,0) 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+
 	
 }
 
 .site-description {
-	display:inline-block;
-	float:right;
-	padding:0 0 1em 0;
+	display:block;
+	width:100%;
+	position:absolute;
+	top:0;
+	right:0;
 	font-style: italic;
 	font-size: 1.2em;
+	background-color:$black;
+	padding:.5em 0 .5em .5em;
+	line-height:1em;
+	color:$lightest-yellow;
+	z-index:50;
+	text-align:right;
 
 	.home & {
 		display: none;
@@ -143,6 +154,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', e
 	background-color:$purple;
 	display:inline-block;
 	padding:.75em 0 .75em 0;
+
+	.home & {
+		margin-top:1em;
+	}
 
 	&:before {
 		content: '';
@@ -358,6 +373,64 @@ POSTS & CONTENT STYLES
 	time {}
 }
 
+.accordion {
+	margin-left:2em;
+}
+
+a.trigger, .switch a {
+	outline:0;
+
+	&.active, &.focus {
+		outline: 0;
+	}
+} 
+.switch {
+	display:inline-block;
+	float:right;
+	margin-bottom:.5em;
+}
+
+.excol {
+	clear:both;
+	margin-bottom:0;
+}
+
+.trigger {
+	text-decoration:none;
+	border:none;
+
+	&:before {
+		content:'\f196';
+		font-family: "FontAwesome";
+		margin: 0 10px 0 -25px;
+	}
+
+	&.open:before {
+		content:'\f147';
+		font-family: "FontAwesome";
+	margin: 0 10px 0 -25px;
+	}
+
+}
+
+.outer {
+	margin-left:25px;
+}
+
+.question {
+	font-size:1.1em;
+	a, a:visited {
+		color:$light-blue;
+		font-weight: 700;
+	}
+	
+	/* &:before {
+		content: 'Q:';
+		font-size: 1.5em;
+		font-weight: bold;
+		margin:0 15px 0 -40px;
+	} */
+}
 
 
 /* entry content */
