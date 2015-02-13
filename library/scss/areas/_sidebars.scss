@@ -36,10 +36,10 @@
 }
 
 .sidebar {
-	margin-top:-.75em;
+	margin-top:-.25em;
 
 	.widget {
-		border:.75em solid $black;
+		border:.25em solid $black;
 	}
 	.widget-even {
 		background-color: $dark-purple;
@@ -57,15 +57,23 @@
 
 .parent-sidebar-menu {
 	margin-left:0;
+	margin-bottom:0;
 	list-style-type: none;
 
-	> li > a {
-		font-size: 1.2em;
+	> li {
+		margin-bottom: 0;
+
+		> a {
+			display: inline-block;
+			font-size: 1.2em;
+			margin-bottom: .5em;
+		}
 	}
 
 	.current_page_item {
 
 		> a {
+
 			color:$lightest-yellow;
 		}
 	}
@@ -74,4 +82,9 @@
 .child-sidebar-menu {
 	font-size:1.1em;
 	list-style-type: square;
+	margin-bottom:0;
+
+	li:last-of-type {
+		margin-bottom: 0;
+	}
 }

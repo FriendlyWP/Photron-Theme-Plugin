@@ -5,6 +5,9 @@
 				<div id="inner-content" class="wrap cf">
 
 						<div id="main" class="main-content cf" role="main">
+							<?php if ( function_exists('yoast_breadcrumb') ) {
+								yoast_breadcrumb('<p id="breadcrumbs">','</p>');
+							} ?>
 
 							<?php if (is_category()) { ?>
 								<h1 class="page-title">

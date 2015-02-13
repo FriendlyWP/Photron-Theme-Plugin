@@ -6,3 +6,15 @@ body {
 html {
 	background:none;
 }
+
+ul, ol {
+	margin-left:1.5em;
+}
+
+li {
+	margin-bottom:1.5em;
+
+	:last-child {
+		margin-bottom: 0;
+	}
+}

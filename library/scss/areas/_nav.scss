@@ -197,6 +197,8 @@ NAVIGATION STYLES
 
 	li {
 		list-style: none;
+		padding:0;
+		margin:0;
 
 		a, a:visited {
 			display: block;
@@ -234,6 +236,7 @@ NAVIGATION STYLES
 			ul.children {
 				background-color: $link-color;
 				display: none;
+				font-size: .9em;
 				padding:0;
 				margin:0;
 				width:auto;
@@ -250,6 +253,7 @@ NAVIGATION STYLES
 						border-right: 0;
 						display: block;
 						width: 180px;
+						line-height: 1em;
 						text-transform: none;
 						border-bottom: 1px dotted $white;
 

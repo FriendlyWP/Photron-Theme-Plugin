@@ -59,12 +59,12 @@ add_action( 'after_setup_theme', 'bones_ahoy' );
 
 // Thumbnail sizes
 
+add_image_size('tiny-thumb', 150);
 
 add_filter( 'image_size_names_choose', 'bones_custom_image_sizes' );
-
 function bones_custom_image_sizes( $sizes ) {
     return array_merge( $sizes, array(
-        //'bones-thumb-600' => __('600px by 150px'),
+        'tiny-thumb' => __('150px wide'),
         //'bones-thumb-300' => __('300px by 100px'),
     ) );
 }
@@ -222,3 +222,16 @@ add_filter('wpseo_metabox_prio' , 'my_wpseo_metabox_prio' );
 function my_wpseo_metabox_prio() {
   return 'low' ;                                
 }
+
+function save_other_video_thumbnail($post_id) {
+    $postdata = get_postdata($post_id);
+    if ( $postdata['post_status'] == 'draft' OR $postdata['post_status'] == 'future') {
+        get_video_thumbnail($post_id);
+    }
+}
+
+if (function_exists('get_video_thumbnail')) {
+  add_action('save_post', 'save_other_video_thumbnail', 10, 1);
+}
+
+add_theme_support( 'woocommerce' );

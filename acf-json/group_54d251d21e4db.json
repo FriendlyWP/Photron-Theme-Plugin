@@ -1,0 +1,58 @@
+{
+    "key": "group_54d251d21e4db",
+    "title": "Video Information",
+    "fields": [
+        {
+            "key": "field_54d251fd8e94f",
+            "label": "Video description",
+            "name": "video_description",
+            "prefix": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 1
+        },
+        {
+            "key": "field_54d251d88e94e",
+            "label": "Video URL",
+            "name": "video_url",
+            "prefix": "",
+            "type": "oembed",
+            "instructions": "Add the URL of the video here.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "width": "",
+            "height": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "video"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "modified": 1423069835
+}
