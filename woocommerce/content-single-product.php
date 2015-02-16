@@ -9,7 +9,10 @@
  * @version     1.6.4
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
 ?>
 
 <?php
@@ -28,17 +31,18 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 <div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<?php
-		/**
-		 * woocommerce_before_single_product_summary hook
-		 *
-		 * @hooked woocommerce_show_product_sale_flash - 10
-		 * @hooked woocommerce_show_product_images - 20
-		 */
-		do_action( 'woocommerce_before_single_product_summary' );
-	?>
+	
 
 	<div class="summary entry-summary">
+		<?php
+			/**
+			 * woocommerce_before_single_product_summary hook
+			 *
+			 * @hooked woocommerce_show_product_sale_flash - 10
+			 * @hooked woocommerce_show_product_images - 20
+			 */
+			do_action( 'woocommerce_before_single_product_summary' );
+		?>
 
 		<?php
 			/**
@@ -53,18 +57,42 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 			 * @hooked woocommerce_template_single_sharing - 50
 			 */
 			do_action( 'woocommerce_single_product_summary' );
+			//the_content();
 		?>
 
 	</div><!-- .summary -->
+
+	<div class="moreinfo">
+		<?php //echo do_shortcode('[tabby title="General"]'); ?>
+			<?php //the_content(); ?>
+		<?php if ( function_exists('get_field') && get_field('product_features') ) {
+			echo do_shortcode('[tabby title="Key Features"]'); 
+				the_field('product_features'); 
+		} ?>
+		<?php if ( function_exists('get_field') && get_field('product_specifications') ) {
+			echo do_shortcode('[tabby title="Specifications"]'); 
+				the_field('product_specifications'); 
+		} ?>
+		
+		<?php echo do_shortcode('[tabby title="Tech Specs"]'); ?>
+		<?php echo WC_Compare_Hook_Filter::show_compare_fields(get_queried_object_id()); ?>
+		<?php if ( function_exists('get_field') && get_field('product_data_sheets') ) {
+			echo do_shortcode('[tabby title="DataSheet"]'); 
+				the_field('product_data_sheets'); 
+		} ?>
+		<?php echo do_shortcode('[tabbyending]'); ?>
+	</div>
 
 	<?php
 		/**
 		 * woocommerce_after_single_product_summary hook
 		 *
 		 * @hooked woocommerce_output_product_data_tabs - 10
+		 * @hooked woocommerce_upsell_display - 15
 		 * @hooked woocommerce_output_related_products - 20
 		 */
 		do_action( 'woocommerce_after_single_product_summary' );
+
 	?>
 
 	<meta itemprop="url" content="<?php the_permalink(); ?>" />

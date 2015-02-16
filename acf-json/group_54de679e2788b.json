@@ -1,0 +1,204 @@
+{
+    "key": "group_54de679e2788b",
+    "title": "Featured Blocks",
+    "fields": [
+        {
+            "key": "field_54de67a955134",
+            "label": "Feature",
+            "name": "feature",
+            "prefix": "",
+            "type": "flexible_content",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "button_label": "Add Block",
+            "min": "",
+            "max": "",
+            "layouts": [
+                {
+                    "key": "54de67b0b65f2",
+                    "name": "flex_content",
+                    "label": "Content",
+                    "display": "table",
+                    "sub_fields": [
+                        {
+                            "key": "field_54de685155135",
+                            "label": "Columns",
+                            "name": "columns",
+                            "prefix": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": 10,
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "1": 1,
+                                "2": 2,
+                                "3": 3,
+                                "4": 4
+                            },
+                            "default_value": [
+                                1
+                            ],
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "disabled": 0,
+                            "readonly": 0
+                        },
+                        {
+                            "key": "field_54de688455136",
+                            "label": "Column 1",
+                            "name": "col_1",
+                            "prefix": "",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "basic",
+                            "media_upload": 1
+                        },
+                        {
+                            "key": "field_54de689d55137",
+                            "label": "Column 2",
+                            "name": "col_2",
+                            "prefix": "",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_54de685155135",
+                                        "operator": "==",
+                                        "value": "2"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "field": "field_54de685155135",
+                                        "operator": "==",
+                                        "value": "3"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "field": "field_54de685155135",
+                                        "operator": "==",
+                                        "value": "4"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "basic",
+                            "media_upload": 1
+                        },
+                        {
+                            "key": "field_54de68aa55138",
+                            "label": "Column 3",
+                            "name": "col_3",
+                            "prefix": "",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_54de685155135",
+                                        "operator": "==",
+                                        "value": "3"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "field": "field_54de685155135",
+                                        "operator": "==",
+                                        "value": "4"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "basic",
+                            "media_upload": 1
+                        },
+                        {
+                            "key": "field_54de68c455139",
+                            "label": "Column 4",
+                            "name": "col_4",
+                            "prefix": "",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_54de685155135",
+                                        "operator": "==",
+                                        "value": "4"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "basic",
+                            "media_upload": 1
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "tmpl-featured.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "modified": 1423862410
+}

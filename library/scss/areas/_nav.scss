@@ -315,3 +315,11 @@ NAVIGATION STYLES
 
 
 } /* end .nav */
+
+#inner-footer nav {
+	display: none;
+
+	@include breakpoint(laptop) {
+		display: inline-block;
+	}
+}

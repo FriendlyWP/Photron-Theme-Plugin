@@ -5,7 +5,7 @@ GRID
 // using a mixin since we can't use placeholder selectors
 @mixin grid-col {
   float: left;
-  padding-right: 1%;
+  
 }
 
 .main-content {
@@ -14,6 +14,10 @@ GRID
 
   @include breakpoint(tablet) {
       width:66%;
+
+      .full-width & {
+        width:100%;
+      }
   }
 }
 
@@ -23,6 +27,10 @@ GRID
   
   @include breakpoint(tablet) {
       width: 31%;
+
+      .full-width & {
+        width:100%;
+      }
   }
 }
 
@@ -31,3 +39,4 @@ GRID
   float: right;
   padding-right: 0;
 }
+

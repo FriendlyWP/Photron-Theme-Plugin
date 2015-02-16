@@ -15,7 +15,7 @@ Template Name: Home Page
 				// PARAMETERS LIST: https://developers.google.com/youtube/player_parameters#loop
 				?>
 				<!-- PLAYLIST VERSION-->
-				<div class="video-container fullback"><iframe src="http://www.youtube.com/embed/b56tadIKKSw?autoplay=0&enablejsapi=1&rel=0&showinfo=0&controls=0&loop=1&listType=playlist&list=PLo1FmDpu7xGcKSg4GqGTVq1dcSueBan0G&wmode=transparent" frameborder="0" allowfullscreen></iframe>​</div>
+				<div class="video-container fullback"><iframe src="http://www.youtube.com/embed/b56tadIKKSw?autoplay=1&enablejsapi=1&rel=0&showinfo=0&controls=0&loop=0&listType=playlist&list=PLo1FmDpu7xGcKSg4GqGTVq1dcSueBan0G&wmode=transparent" frameborder="0" allowfullscreen></iframe>​</div>
 				<!-- SINGLE VIDEO VERSION -->
 				<!-- THIS DOES NOT WORK YET, WMODE AND ZINDEX NOT RESPECTED SO NO CONTENT SHOWS ON TOP
 				 <div class="video-container fullback"><iframe src="http://www.youtube.com/v/LA6XSrM0V_0?autoplay=1&rel=0&showinfo=0&controls=0&loop=1&playlist=LA6XSrM0V_0&wmode=transparent" frameborder="0" allowfullscreen></iframe>​</div> -->

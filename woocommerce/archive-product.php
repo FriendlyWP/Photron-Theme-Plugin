@@ -9,7 +9,9 @@
  * @version     2.0.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
 get_header( 'shop' ); ?>
 
@@ -33,8 +35,6 @@ get_header( 'shop' ); ?>
 
 		<?php if ( have_posts() ) : ?>
 
-			<?php //if ( function_exists('woo_add_compare_button' ) ) echo woo_add_compare_button(); ?>
-
 			<?php
 				/**
 				 * woocommerce_before_shop_loop hook
@@ -45,41 +45,17 @@ get_header( 'shop' ); ?>
 				do_action( 'woocommerce_before_shop_loop' );
 			?>
 
-			<?php
+			<?php woocommerce_product_loop_start(); ?>
 
-				//only show sidebar when not on legacy page
-				if(is_product_category('legacy-products')){
-					$legacy_changes = true;
-				}
+				<?php woocommerce_product_subcategories(); ?>
 
-			?>
-					<div class="clear"></div>
-					<div class="<?php if(!$legacy_changes){ echo 'products_left_side'; } ?>">
-						<?php woocommerce_product_loop_start(); ?>
+				<?php while ( have_posts() ) : the_post(); ?>
 
-							<?php woocommerce_product_subcategories(); ?>
+					<?php wc_get_template_part( 'content', 'product' ); ?>
 
-							<?php while ( have_posts() ) : the_post(); ?>
+				<?php endwhile; // end of the loop. ?>
 
-								<?php wc_get_template_part( 'content', 'product' ); ?>
-
-							<?php endwhile; // end of the loop. ?>
-
-						<?php woocommerce_product_loop_end(); ?>
-
-						<div class="clear"></div>
-					</div>
-				
-				<?php if(!$legacy_changes): ?>
-					<div class="products_right_side">
-						<?php if ( is_active_sidebar( 'products_page' ) ) : ?>
-							<?php dynamic_sidebar( 'products_page' ); ?>
-						<?php endif; ?>
-						<div class="clear"></div>
-					</div>
-				<?php endif; ?>
-
-				</div>
+			<?php woocommerce_product_loop_end(); ?>
 
 			<?php
 				/**
@@ -96,8 +72,6 @@ get_header( 'shop' ); ?>
 
 		<?php endif; ?>
 
-
-
 	<?php
 		/**
 		 * woocommerce_after_main_content hook
@@ -113,7 +87,7 @@ get_header( 'shop' ); ?>
 		 *
 		 * @hooked woocommerce_get_sidebar - 10
 		 */
-		//do_action( 'woocommerce_sidebar' );
+		do_action( 'woocommerce_sidebar' );
 	?>
 
 <?php get_footer( 'shop' ); ?>

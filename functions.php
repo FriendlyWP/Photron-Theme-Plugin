@@ -234,4 +234,106 @@ if (function_exists('get_video_thumbnail')) {
   add_action('save_post', 'save_other_video_thumbnail', 10, 1);
 }
 
+
+/***  WOOCOMMERCE STUFF ***/
+
 add_theme_support( 'woocommerce' );
+
+// remove 'sort by' dropdown
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+// remove 'results x of y' notice at top
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+
+// Display 40 products per page
+add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 40;' ), 20 );
+
+
+
+/**
+ * Optimize WooCommerce Scripts
+ * Remove WooCommerce Generator tag, styles, and scripts from non WooCommerce pages.
+ */
+add_action( 'wp_enqueue_scripts', 'child_manage_woocommerce_styles', 99 );
+
+function child_manage_woocommerce_styles() {
+  //remove generator meta tag
+  remove_action( 'wp_head', array( $GLOBALS['woocommerce'], 'generator' ) );
+
+  //first check that woo exists to prevent fatal errors
+  if ( function_exists( 'is_woocommerce' ) ) {
+    //dequeue scripts and styles
+    if ( ! is_woocommerce() && ! is_cart() && ! is_checkout() ) {
+      wp_dequeue_style( 'woocommerce_frontend_styles' );
+      wp_dequeue_style( 'woocommerce_fancybox_styles' );
+      wp_dequeue_style( 'woocommerce_chosen_styles' );
+      wp_dequeue_style( 'woocommerce_prettyPhoto_css' );
+      wp_dequeue_style( 'woocommerce-layout' );
+      wp_dequeue_style( 'woocommerce-smallscreen' );
+      wp_dequeue_style( 'woocommerce-general' );
+      wp_dequeue_script( 'wc_price_slider' );
+      wp_dequeue_script( 'wc-single-product' );
+      wp_dequeue_script( 'wc-add-to-cart' );
+      wp_dequeue_script( 'wc-cart-fragments' );
+      wp_dequeue_script( 'wc-checkout' );
+      wp_dequeue_script( 'wc-add-to-cart-variation' );
+      wp_dequeue_script( 'wc-single-product' );
+      wp_dequeue_script( 'wc-cart' );
+      wp_dequeue_script( 'wc-chosen' );
+      wp_dequeue_script( 'woocommerce' );
+      wp_dequeue_script( 'prettyPhoto' );
+      wp_dequeue_script( 'prettyPhoto-init' );
+      wp_dequeue_script( 'jquery-blockui' );
+      wp_dequeue_script( 'jquery-placeholder' );
+      wp_dequeue_script( 'fancybox' );
+      wp_dequeue_script( 'jqueryui' );
+    }
+  }
+
+}
+
+// Replace WooThemes Breadcrumbs with Yoast breadcrumbs
+add_action( 'init', 'hh_breadcrumbs' );
+function hh_breadcrumbs() {
+    remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
+    add_action( 'woocommerce_before_main_content','hh_yoast_breadcrumb', 20, 0);
+    function hh_yoast_breadcrumb() {
+        if ( function_exists('yoast_breadcrumb')  && !is_front_page() ) {
+            yoast_breadcrumb('<p id="breadcrumbs">','</p>');
+        }
+    }
+
+}
+
+add_filter( 'woocommerce_product_tabs', 'woo_remove_product_tabs', 98 );
+function woo_remove_product_tabs( $tabs ) {
+
+    unset( $tabs['description'] );        // Remove the description tab
+    unset( $tabs['reviews'] );      // Remove the reviews tab
+    unset( $tabs['additional_information'] );   // Remove the additional information tab
+
+    return $tabs;
+
+}
+
+/*
+ * wc_remove_related_products
+ * 
+ * Clear the query arguments for related products so none show.
+ * Add this code to your theme functions.php file.  
+ */
+function wc_remove_related_products( $args ) {
+  return array();
+}
+add_filter('woocommerce_related_products_args','wc_remove_related_products', 10); 
+
+// SINGLE PRODUCT 
+remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
+add_action('woocommerce_single_product_summary', 'display_content', 20 );
+
+function display_content() {
+  $content = get_the_content(get_queried_object_id());
+  $content = apply_filters('the_content', $content);
+  echo $content;
+}
+
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );

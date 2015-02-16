@@ -9,11 +9,10 @@
  * @version     1.6.4
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 get_header( 'shop' ); ?>
-
-<?php get_header(); ?>
 
 	<?php
 		/**
@@ -38,6 +37,7 @@ get_header( 'shop' ); ?>
 		 * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
 		 */
 		do_action( 'woocommerce_after_main_content' );
+		
 	?>
 
 	<?php
@@ -46,16 +46,7 @@ get_header( 'shop' ); ?>
 		 *
 		 * @hooked woocommerce_get_sidebar - 10
 		 */
-		//do_action( 'woocommerce_sidebar' );
+		do_action( 'woocommerce_sidebar' );
 	?>
 
-<?php //get_footer( 'shop' ); ?>
-						</div>
-
-						<?php get_sidebar(); ?>
-
-				</div>
-
-			</div>
-
-<?php get_footer(); ?>
+<?php get_footer( 'shop' ); ?>

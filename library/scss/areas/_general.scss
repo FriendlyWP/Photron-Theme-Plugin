@@ -36,7 +36,7 @@ body {
 	}
 
 	@include breakpoint(tv) {
-		max-width: 1300px;
+		max-width: 1400px;
 	}
 }
 
@@ -148,6 +148,17 @@ body {
 	z-index:50;
 	text-align:right;
 
+	&:after {
+		content: '';
+		position:absolute;
+		right:-500%;
+		top:0;
+		display: inline-block;
+		background-color:$black;
+		width:500%;
+		height: 100%;
+	}
+
 	.home & {
 		display: none;
 	}
@@ -218,7 +229,7 @@ body {
 		color:$white;
 
 		@include breakpoint(tablet) {
-			max-width: 375px;
+			max-width: 400px;
 			width: 28.8461538%;
 			margin-right:6.7307692%;	
 			float:left;
@@ -245,6 +256,8 @@ body {
 		}
 	}
 }
+
+
 
 /*********************
 LINK STYLES
@@ -324,6 +337,16 @@ h6 {
 	font-size:2.5em;
 }
 
+.feature-head {
+	border-bottom: 2px solid $orange;
+	margin-bottom:.5em;
+
+}
+
+.sub-head {
+	margin-bottom:.1em;
+	line-height:1em;
+}
 .entry-title {
 	font-size:2.3em;
 
@@ -336,6 +359,10 @@ p {
 	margin: 0 0 1.677em;
 }
 
+.floatright.small {
+	font-size: 1rem;
+	float:right;
+}
 .searchform {
 	label {
 
@@ -343,6 +370,15 @@ p {
 	input {
 		display: inline-block;
 	}
+}
+
+.text-orange {
+	color:$orange;
+}
+
+.flexContent {
+	/* this hides the flexslider until it's loaded */
+  display: none;
 }
 
 /*********************
@@ -377,6 +413,7 @@ POSTS & CONTENT STYLES
 
 .accordion {
 	margin-left:2em;
+	margin-top:-1em;
 }
 
 a.trigger, .switch a {
@@ -562,6 +599,10 @@ img {
 	margin: 0 0 1.5em 0;
 	max-width: 100%;
 	height: auto;
+
+	&.banner-image {
+		margin-bottom:.5em;
+	}
 }
 
 /*
@@ -811,6 +852,12 @@ PAGE NAVI STYLES
 	 
 }
 
+.tabs {
+	a {
+		border-bottom: none;
+	}
+}
+
 /*********************
 FOOTER STYLES
 *********************/
@@ -826,9 +873,9 @@ FOOTER STYLES
 		margin-bottom: .677em;
 	}
 
-	a, a:visited {
-		color:$gray;
-		border-color: $gray;
+	.widget a, a:visited {
+		color:lighten($lightest-yellow, 10%);
+		border-bottom:1px dotted $white;
 	}
 }
 
@@ -838,7 +885,8 @@ FOOTER STYLES
 	
 	@include breakpoint(laptop) {
 		margin:0 0 .5em;
-		text-align: left;
+		text-align: right;
+		float:right;
 		display:inline-block;
 
 		& > div {

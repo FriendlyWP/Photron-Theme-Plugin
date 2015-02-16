@@ -3,9 +3,11 @@
 			<div id="content">
 
 				<div id="inner-content" class="wrap cf">
-
+						
 						<div id="main" class="main-content cf" role="main">
-
+							<?php if (function_exists('get_field') && get_field('banner_image')) {
+								echo '<img class="banner-image" src="' . get_field('banner_image') . '" />';
+							} ?>
 							<?php if ( function_exists('yoast_breadcrumb') ) {
 								yoast_breadcrumb('<p id="breadcrumbs">','</p>');
 							} ?>

@@ -2,9 +2,14 @@
 				
 				<div id="inner-footer" class="wrap cf">
 
+
+
 					<?php if ( is_active_sidebar( 'footer1' ) ) : ?>
 
+						<div class="footer-widgets cf">
+
 						<?php dynamic_sidebar( 'footer1' ); ?>
+						</div>
 
 					<?php else : ?>
 

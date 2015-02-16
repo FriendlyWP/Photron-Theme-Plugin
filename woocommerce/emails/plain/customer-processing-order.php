@@ -4,9 +4,12 @@
  *
  * @author 		WooThemes
  * @package 	WooCommerce/Templates/Emails/Plain
- * @version     2.0.0
+ * @version     2.2.0
  */
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
 echo $email_heading . "\n\n";
 
@@ -21,7 +24,7 @@ echo sprintf( __( 'Order date: %s', 'woocommerce'), date_i18n( wc_date_format(),
 
 do_action( 'woocommerce_email_order_meta', $order, $sent_to_admin, $plain_text );
 
-echo "\n" . $order->email_order_items_table( $order->is_download_permitted(), true, ($order->status=='processing') ? true : false, '', '', true );
+echo "\n" . $order->email_order_items_table( $order->is_download_permitted(), true, $order->has_status( 'processing' ), '', '', true );
 
 echo "----------\n\n";
 
@@ -35,15 +38,7 @@ echo "\n****************************************************\n\n";
 
 do_action( 'woocommerce_email_after_order_table', $order, $sent_to_admin, $plain_text );
 
-echo __( 'Your details', 'woocommerce' ) . "\n\n";
-
-if ( $order->billing_email )
-	echo __( 'Email:', 'woocommerce' ); echo $order->billing_email . "\n";
-
-if ( $order->billing_phone )
-	echo __( 'Tel:', 'woocommerce' ); ?> <?php echo $order->billing_phone . "\n";
-
-wc_get_template( 'emails/plain/email-addresses.php', array( 'order' => $order ) );
+do_action( 'woocommerce_email_customer_details', $order, $sent_to_admin, $plain_text );
 
 echo "\n****************************************************\n\n";
 

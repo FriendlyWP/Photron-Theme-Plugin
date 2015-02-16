@@ -17,7 +17,9 @@ http://codex.wordpress.org/Creating_Admin_Themes
 body.login {}
 
 
-#login {} /* the form box */
+#login {
+	width:350px;
+	} /* the form box */
 
 /*
 This is the Wordpress logo in the admin area.
@@ -26,8 +28,8 @@ with the width and height.
 */
 .login h1 a {
 	background: url(../images/login-logo.png) no-repeat top center; /* make sure to replace this! */
-	width: 326px;
-	height: 67px;
+	width: 350px;
+	height: 37px;
 	text-indent: -9999px;
 	overflow: hidden;
 	padding-bottom: 15px;
