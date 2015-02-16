@@ -946,10 +946,24 @@ FOOTER STYLES
 
 
 .vid {
-	width:30%;
+	width:31.333333%;
 	display:inline-block;
 	margin-right:3%;
 	vertical-align:top;
+	padding:1%;
+	background-color:$black;
+	color:$white;
+	margin-bottom:1.25em;
+	vertical-align:top;
+
+	a, a:visited {
+		color:$white;
+		border-bottom:1px dotted $light-gray;
+	}
+
+	.imglink {
+		border:none;
+	}
 
 	img {
 		margin-bottom: 0;
@@ -974,6 +988,36 @@ FOOTER STYLES
 		}
 
 	}
+
+	.copy {
+		padding:.5em;
+		display:block;
+
+		p {
+			margin-bottom: .5em;
+		}
+
+		:last-child {
+			margin-bottom: 0;
+		}
+
+		.button {
+			margin:0 .5em .5em 0;
+			border: none;
+			font-size: .8em;
+		}
+
+		.taghead {
+			font-weight: normal;
+			font-size: .8em;
+			text-transform: uppercase;
+		}
+
+	}
+}
+
+.padtop {
+	margin-top:.677em;
 }
 
 .play-button {

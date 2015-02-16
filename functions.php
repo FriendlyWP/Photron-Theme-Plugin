@@ -279,7 +279,8 @@ function child_manage_woocommerce_styles() {
       wp_dequeue_script( 'wc-single-product' );
       wp_dequeue_script( 'wc-cart' );
       wp_dequeue_script( 'wc-chosen' );
-      wp_dequeue_script( 'woocommerce' );
+      // MUST ENQUEUE WOOCOMMERCE OR JS ERROR AND RESPONSIVE LIGHTBOX WON'T WORK
+      //wp_dequeue_script( 'woocommerce' );
       wp_dequeue_script( 'prettyPhoto' );
       wp_dequeue_script( 'prettyPhoto-init' );
       wp_dequeue_script( 'jquery-blockui' );

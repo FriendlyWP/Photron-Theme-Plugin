@@ -37,6 +37,33 @@
             },
             "width": "",
             "height": ""
+        },
+        {
+            "key": "field_54e226e9203d0",
+            "label": "Camera(s)",
+            "name": "related_cameras",
+            "prefix": "",
+            "type": "relationship",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "product"
+            ],
+            "taxonomy": [
+                "product_cat:cameras"
+            ],
+            "filters": [
+                "search"
+            ],
+            "elements": "",
+            "max": "",
+            "return_format": "object"
         }
     ],
     "location": [
@@ -54,5 +81,5 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "modified": 1423069835
+    "modified": 1424107416
 }
