@@ -959,21 +959,20 @@ FOOTER STYLES
 	a, a:visited {
 		color:$white;
 		border-bottom:1px dotted $light-gray;
+
+		&.imglink {
+			border:none;
+		}
 	}
 
-	.imglink {
-		border:none;
-	}
+	
 
 	img {
 		margin-bottom: 0;
 	}
 
-	&:nth-child(3n+2) {
-		margin-right: 0;
-	}
-
-	&.listedvid-0 {
+	
+	.unsorted &.listedvid-0 {
 		width:100%;
 		margin-right: 0;
 
@@ -988,6 +987,11 @@ FOOTER STYLES
 		}
 
 	}
+
+	&:nth-child(3n+4) {
+		margin-right: 0;
+	}
+
 
 	.copy {
 		padding:.5em;

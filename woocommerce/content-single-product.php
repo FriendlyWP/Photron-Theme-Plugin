@@ -74,8 +74,30 @@ if ( ! defined( 'ABSPATH' ) ) {
 				the_field('product_specifications'); 
 		} ?>
 		
-		<?php echo do_shortcode('[tabby title="Tech Specs"]'); ?>
-		<?php echo WC_Compare_Hook_Filter::show_compare_fields(get_queried_object_id()); ?>
+		<?php echo do_shortcode('[tabby title="Tech Specs"]'); 
+			 echo WC_Compare_Hook_Filter::show_compare_fields(get_queried_object_id()); ?>
+
+		<?php 
+
+		$args = array(
+	            'posts_per_page' => 1, // only pull one since this is just a test
+	            'post_type' => 'video',
+	            'meta_query' => array(
+					array(
+						'key' => 'related_cameras', // name of custom field
+						'value' => '"' . get_queried_object_id() . '"', // matches exaclty "123", not just 123. This prevents a match for "1234"
+						'compare' => 'LIKE'
+					)
+				)
+	        ); 
+        	// get posts with the current taxonomy archive term; if we're anywhere eles, all videos will be shown
+            $videos = get_posts($args);
+            if ($videos)  {
+            	echo do_shortcode('[tabby title="Videos"]'); 
+            	echo do_shortcode('[videos camera="' . get_queried_object_id() . '"]');
+            }
+		?>
+
 		<?php if ( function_exists('get_field') && get_field('product_data_sheets') ) {
 			echo do_shortcode('[tabby title="DataSheet"]'); 
 				the_field('product_data_sheets'); 

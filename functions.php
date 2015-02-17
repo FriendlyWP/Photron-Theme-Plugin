@@ -247,8 +247,6 @@ remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
 // Display 40 products per page
 add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 40;' ), 20 );
 
-
-
 /**
  * Optimize WooCommerce Scripts
  * Remove WooCommerce Generator tag, styles, and scripts from non WooCommerce pages.

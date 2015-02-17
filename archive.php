@@ -61,7 +61,10 @@
 			                   	<div class="cat-desc"><?php echo $term->description; ?></div>
 		                    <?php } ?>
 
-							<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+							<?php if (is_tax('video_tags') || is_post_type_archive('video')) {
+								echo do_shortcode('[videos]');
+							} elseif (have_posts()) {
+							 while (have_posts()) : the_post(); ?>
 
 							<article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article">
 
@@ -89,7 +92,7 @@
 
 									<?php bones_page_navi(); ?>
 
-							<?php else : ?>
+							<?php } else { ?>
 
 									<article id="post-not-found" class="hentry cf">
 										<header class="article-header">
@@ -103,7 +106,7 @@
 										</footer>
 									</article>
 
-							<?php endif; ?>
+							<?php } ?>
 
 						</div>
 
