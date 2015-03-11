@@ -41,7 +41,7 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 
 	<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
 
-	<a href="<?php the_permalink(); ?>">
+	<a class="product-title" href="<?php the_permalink(); ?>">
 
 		<?php
 			/**
@@ -53,7 +53,7 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 			do_action( 'woocommerce_before_shop_loop_item_title' );
 		?>
 
-		<h3><?php the_title(); ?></h3>
+		
 
 		<?php
 			/**
@@ -66,16 +66,26 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 		?>
 
 	</a>
+	<div class="prod-desc">
+		<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+		<?php if (function_exists('get_field') && get_field('short_product_description')) {
+			the_field('short_product_description');
+		} ?>
+		<?php echo get_the_term_list( $product->ID, 'product_tag', '<ul class="prod-tags"><li>', '</li><li>', '</li></ul>' ); ?>
 
-	<?php
+	</div>
 
-		/**
-		 * woocommerce_after_shop_loop_item hook
-		 *
-		 * @hooked woocommerce_template_loop_add_to_cart - 10
-		 */
-		do_action( 'woocommerce_after_shop_loop_item' ); 
+	<div class="prod-link">
+		<?php
 
-	?>
+			/**
+			 * woocommerce_after_shop_loop_item hook
+			 *
+			 * @hooked woocommerce_template_loop_add_to_cart - 10
+			 */
+			do_action( 'woocommerce_after_shop_loop_item' ); 
+
+		?>
+	</div>
 
 </li>

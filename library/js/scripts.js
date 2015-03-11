@@ -7,6 +7,23 @@ jQuery(document).ready(function($) {
   // ADD CLASS TO LINKS CONTAINING IMAGES
   $('a:has(img)').addClass('imglink');
 
+   /*	$('.js-box').hide();
+	$('#js-select').change(function() {
+	    $('.js-box').hide();
+	    if($(this).val()) {
+	    	$('.' + $(this).val()).show();	
+	    }
+	    
+	}).trigger('change');*/
+
+$('#js-select').change(function() {
+	    //$('.js-box').hide();
+	    if($(this).val()) {
+	    	window.location = $(this).val();	
+	    }
+	    
+	}).trigger('change');
+
 
 }); /* end of as page load scripts */
 

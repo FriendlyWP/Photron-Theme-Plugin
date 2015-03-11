@@ -14,8 +14,10 @@ body {
 	color: $text-color;
   	-webkit-font-smoothing: antialiased;
   	background-color:transparent;
-  	background:url('../images/dark_stripes.png') $black repeat;
-
+  	/* background:url('../images/dark_stripes.png') $white repeat; */
+  	/* background:url('../images/crossword.png') $white repeat; */
+  	background-color:$light-gray;
+  	background:url('../images/grey.png') $light-gray repeat;
 }
 
 .hide {
@@ -98,7 +100,8 @@ body {
 
 .main-content {
 	background-color:$white;
-	border: .25em solid $orange;
+	/* border: .25em solid $orange; */
+	border: 1px solid $lightest-gray;
 	padding: 1.5em;
 
 	.home & {
@@ -107,6 +110,63 @@ body {
 		width:100%;
 		padding:0;
 	}
+}
+
+.distrib-info {
+	display:block;
+
+	h6 {
+		display: inline-block;
+		margin-right:1em;
+	}
+}
+
+
+.distrib-deet {
+	margin-bottom:1.677em;
+	h3 {
+		a, a:visited {
+			border-bottom: none;
+
+			&:hover {
+				color:$orange;
+			}
+		}
+	}
+
+	i {
+		font-size:.8em;
+	}
+}
+
+
+
+.distributors-list {
+	width:100%;
+	margin-top:1.677em;
+
+	h2  {
+		a, a:visited {
+			border:none;
+			color:$yellow;	
+		}
+		
+	}
+}
+
+.page-content {
+	width:66%;
+	float:left;
+	vertical-align:top;
+	display:inline-block;
+}
+
+.page-dropdown {
+	width: 32%;
+	float:right;
+	vertical-align:top;
+	display:inline-block;
+	text-align:right;
 }
 
 .header {
@@ -141,10 +201,11 @@ body {
 	right:0;
 	font-style: italic;
 	font-size: 1.2em;
-	background-color:$black;
+	/* background:url('../images/grey.png') $dark-gray repeat; */
+	background-color:$white;
 	padding:.5em 0 .5em .5em;
 	line-height:1em;
-	color:$lightest-yellow;
+	color:$purple;
 	z-index:50;
 	text-align:right;
 
@@ -154,7 +215,8 @@ body {
 		right:-500%;
 		top:0;
 		display: inline-block;
-		background-color:$black;
+		/* background:url('../images/grey.png') $white repeat; */
+		background-color:$white;
 		width:500%;
 		height: 100%;
 	}
@@ -209,24 +271,24 @@ body {
 }
 
 .home-footer {
-	background:url('../images/dark_stripes.png') $black repeat;
+	background:url('../images/grey.png') $white repeat;
 	padding:1em 0;
-	border-top: 3em solid $black;
-
 }
 
 .home-blocks {
-	margin-top:-3.75em;
 
 	h4 {
 		color:$yellow;
-		margin-bottom: .85em;
-		padding:0 .5rem;
+		position:relative;
+		margin-bottom: 0;
+		padding: .5rem;
+
 	}
 
-	div {
+	> div {
+		position:relative;
 		width: 100%;
-		color:$white;
+		color:$black;
 
 		@include breakpoint(tablet) {
 			max-width: 400px;
@@ -236,7 +298,7 @@ body {
 		}
 
 		span {
-			background-color: $black;
+			/* background-color:$white; */
 			padding:.5rem;
 			display: block;
 		}
@@ -381,6 +443,38 @@ p {
   display: none;
 }
 
+.filetype {
+	&::after {
+		content:'\f016';
+		font-family: 'FontAwesome';
+		display: inline-block;
+		padding-left: .5em;
+	}
+}
+
+.filetype-pdf {
+	&::after {
+		content:'\f1c1';
+	}
+}
+
+.filetype-doc, .filetype-docx {
+	&::after {
+		content:'\f1c2';
+	}
+}
+
+.filetype-xls, .filetype-xlsx {
+	&::after {
+		content:'\f1c3';
+	}
+}
+
+.button.datasheet {
+	margin-bottom:1.677em !important;
+	display:inline-block;
+}
+
 /*********************
 POSTS & CONTENT STYLES
 *********************/
@@ -481,8 +575,8 @@ a.trigger, .switch a {
 		padding: 2em;
 		margin-top:25%;
 		width: 56%;
-		color:$white;
-		border: 1px solid $black;
+		color:$black;
+		border: 1px solid $lightest-gray;
 		background: -moz-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.51) 0%, rgba(0,0,0,0.62) 50%, rgba(0,0,0,0.51) 100%); /* FF3.6+ */
 		background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,0,0,0.51)), color-stop(50%,rgba(0,0,0,0.62)), color-stop(100%,rgba(0,0,0,0.51))); /* Chrome,Safari4+ */
 		background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.51) 0%,rgba(0,0,0,0.62) 50%,rgba(0,0,0,0.51) 100%); /* Chrome10+,Safari5.1+ */
@@ -490,6 +584,16 @@ a.trigger, .switch a {
 		background: -ms-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.51) 0%,rgba(0,0,0,0.62) 50%,rgba(0,0,0,0.51) 100%); /* IE10+ */
 		background: radial-gradient(ellipse at center,  rgba(0,0,0,0.51) 0%,rgba(0,0,0,0.62) 50%,rgba(0,0,0,0.51) 100%); /* W3C */
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#82000000', endColorstr='#82000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+		background: -moz-linear-gradient(top,  rgba(255,255,255,0.52) 0%, rgba(255,255,255,0.41) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.52)), color-stop(100%,rgba(255,255,255,0.41))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(255,255,255,0.52) 0%,rgba(255,255,255,0.41) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(255,255,255,0.52) 0%,rgba(255,255,255,0.41) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(255,255,255,0.52) 0%,rgba(255,255,255,0.41) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(255,255,255,0.52) 0%,rgba(255,255,255,0.41) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#85ffffff', endColorstr='#69ffffff',GradientType=0 ); /* IE6-9 */
+
+
 
 	p {
 		font-size: 1.2em;
@@ -569,7 +673,7 @@ a.trigger, .switch a {
 	}
 
 	pre {
-		background: $black;
+		background: $white;
 		color: $light-gray;
 		font-size: 0.9em;
 		padding: 1.5em;
@@ -650,13 +754,33 @@ ul {
 .tabcontent {
 	table {
 		table-layout:fixed;
+		width: 100%;
 
+		tr {
+			background-color:lighten($lightest-gray, 5%);
+
+			&:nth-of-type(even) {
+				background-color:$white;
+			}
+		}
+
+		td {
+			padding:0 .3em;
+		}
 	}
 
-	td {
-		white-space: nowrap;
-		text-align: center;
-	}
+	.product-spec {
+		font-size: .9em;
+		th {
+			white-space: nowrap;
+		}
+		td {
+			white-space: nowrap;
+			text-align: center;
+			
+			padding:0 .4em 0 0;
+		}
+	} 
 }
 
 .video-container {
@@ -691,7 +815,7 @@ ul {
 .wp-caption, .html5-captions .wp-caption {
 	max-width: 100%;
 	background: lighten($lightest-blue, 55%);
-	background: $black;
+	background: $white;
 	color:$white;
 	padding: .5em;
 	display:inline-block;
@@ -858,25 +982,197 @@ PAGE NAVI STYLES
 	}
 }
 
+.larger {
+	font-size:1.2em;
+}
+
+.smaller {
+	font-size: .9em;
+}
+
+/************
+PRODUCT STUFF
+*************/
+
+.prod-tags {
+	margin-left:0;
+	font-size:.9em;
+
+	li {
+		display: inline-block;
+		margin-right: .677em;
+		padding:0;
+
+		a, a:visited {
+			@extend %btn;
+			background-color:$light-blue;
+			color:$black;
+
+			&:hover {
+				background-color:darken($light-blue, 20%);
+				color:$white;
+			}
+		}
+	}
+}
+
+.sidebar .widget {
+	#total_compare_product, .no_compare_list {
+		font-family: $sans-serif !important;
+		font-size: inherit !important;
+		font-weight: inherit !important;
+	}
+
+	.woo_compare_widget_button_go {
+		@extend %btn;
+		background:$orange !important;
+		border:1px solid darken($orange, 10%) !important;
+	}
+
+	&.woo_compare_widget {
+		background-color:$white;
+		border:1px solid $lightest-gray;
+
+		.widgettitle {
+			color:$orange;
+		}
+	}
+
+	.woo_compare_widget_item, .woo_compare_remove_product {
+		border: none;
+	}
+}
+
+.woocommerce ul.products {
+	
+
+	li.product {
+		display: block !important;
+		width:100%;
+		float:none;
+		vertical-align: top;
+		position:relative;
+		zoom: 1;
+		margin-bottom: 1em;
+		padding-bottom:1em;
+		border-bottom: 1px dotted $lightest-gray;
+
+		&:last-of-type {
+			border-bottom: none;
+		}
+
+	    &:before, &:after { content: ""; display: table; }
+	    &:after { clear: both; }
+
+		h3 {
+			font-size: 1.3em;
+			padding:0 0 .5em 0;
+
+			a {
+				border: none;
+			}
+		}
+
+		.product-title {
+			display: inline-block;
+			float:left;
+			width: 25%;
+			margin-right: 4%;
+			vertical-align: top;
+		}
+
+		.prod-desc {
+			width: 50%;
+			margin-right:4%;
+			float:left;
+			display: inline-block;
+		}
+
+		.prod-link {
+			width:15%;
+			display: inline-block;
+			float:left;
+			vertical-align: top;
+			margin-right: 2%;
+		}
+
+		p {
+			margin-bottom: .2em;
+			
+		}
+
+		.woo_grid_compare_button_container {
+			
+
+			.woo_bt_compare_this_link   {
+				border:none;
+				position:relative;
+				font-size: 1em !important;
+				font-weight: 400 !important;
+				color:$orange !important;
+				font-family: $sans-serif !important;
+				padding: .5em 1em .5em 0 !important;
+				text-align: left;
+				width:100%;
+
+				&.compared {
+					color:$gray !important;
+				}
+
+				&.compared::before {
+					background: none !important;
+				}
+
+				&::after {
+					content: '\f00e';
+					font-family: 'FontAwesome';
+					display: inline-block;
+					position:absolute;
+					right:-.25em;
+					top: .5em;
+				}
+
+				&.compared::after {
+					content:'\f010';
+					color:$gray;
+				}
+			}
+
+			.woo_bt_view_compare_link {
+				border:none;
+				position:relative;
+				font-size: 1em !important;
+				font-weight: 400 !important;
+				color:$orange !important;
+				font-family: $sans-serif !important;
+				text-align: left;
+				width:100%;
+				background-color:$light-gray;
+				border-radius:.2em;
+				padding:.5em !important;
+			}
+		}
+
+	}
+}
+	
+
 /*********************
 FOOTER STYLES
 *********************/
 
 .footer {
 	clear: both;
-	background-color: $black;
+	background-color: $white;
 	color: $light-gray;
 	padding:1em 0;
 	font-size:.9em;
+	border-top:1px solid $lightest-gray;
 
 	p {
 		margin-bottom: .677em;
 	}
 
-	.widget a, a:visited {
-		color:lighten($lightest-yellow, 10%);
-		border-bottom:1px dotted $white;
-	}
 }
 
 .organization-address, .copyright {
@@ -951,14 +1247,12 @@ FOOTER STYLES
 	margin-right:3%;
 	vertical-align:top;
 	padding:1%;
-	background-color:$black;
-	color:$white;
+
 	margin-bottom:1.25em;
 	vertical-align:top;
 
 	a, a:visited {
-		color:$white;
-		border-bottom:1px dotted $light-gray;
+		border:none;
 
 		&.imglink {
 			border:none;
@@ -970,6 +1264,7 @@ FOOTER STYLES
 	img {
 		margin-bottom: 0;
 	}
+
 
 	
 	.unsorted &.listedvid-0 {
@@ -1020,6 +1315,11 @@ FOOTER STYLES
 	}
 }
 
+.single-video .vid {
+	width:100%;
+	margin:0;
+}
+
 .padtop {
 	margin-top:.677em;
 }
@@ -1038,9 +1338,7 @@ FOOTER STYLES
 		color:$white;
 		font-size: 3rem;
 		width:4%;
-		text-shadow: .2rem .2rem .2rem $light-black;
-
-		
+		text-shadow: 1px 1px 2px $dark-gray;		
 	}
 	&:hover {
 		&::before {

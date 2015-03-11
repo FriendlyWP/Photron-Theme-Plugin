@@ -82,6 +82,7 @@ function bones_remove_recent_comments_style() {
 
 // ADD EDITOR STYLE
 add_action( 'admin_init', 'my_theme_add_editor_styles' );
+
 function my_theme_add_editor_styles() {
     add_editor_style( get_template_directory_uri() . '/library/css/editor-style.css' );
 }

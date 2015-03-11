@@ -336,3 +336,164 @@ function display_content() {
 }
 
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+
+
+add_filter( 'woocommerce_product_add_to_cart_text', 'woo_archive_custom_cart_button_text' );    // 2.1 +
+function woo_archive_custom_cart_button_text() {
+        return __( 'View Details', 'woocommerce' ); 
+}
+
+function get_terms_dropdown($taxonomy, $args, $default_text='Choose your country'){
+  $myterms = get_terms($taxonomy, $args);
+  $output ="<select id='js-select' name='distributor-country-list form-control'>";
+  $output .='<option value="">'. $default_text  . '</option>';
+  if ($taxonomy == 'distributor_country') {
+    $output .='<option value="united-states">United States</option>';  
+  }
+  foreach($myterms as $term){
+    $root_url = get_bloginfo('url');
+    $term_taxonomy=$term->taxonomy;
+    $term_slug=$term->slug;
+    $term_name =$term->name;
+    $link = $term_slug;
+    $output .="<option value='".$link."'>".$term_name."</option>";
+  }
+  $output .="</select>";
+return $output;
+}
+
+function get_terms_dropdown_link($taxonomy, $args, $default_text='Choose your country'){
+  $myterms = get_terms($taxonomy, $args);
+  $output ="<select id='js-select' name='distributor-list form-control'>";
+  $output .='<option value="">'. $default_text  . '</option>';
+  if ($taxonomy == 'distributor_country') {
+    $output .='<option value="united-states">United States</option>';  
+  }
+  foreach($myterms as $term){
+    $root_url = get_bloginfo('url');
+    $term_taxonomy=$term->taxonomy;
+    $term_slug=$term->slug;
+    $term_name =$term->name;
+    $term_url = get_term_link($term->slug, $term->taxonomy);
+    $link = $term_slug;
+    $output .="<option value='".$term_url."'>".$term_name."</option>";
+  }
+  $output .="</select>";
+return $output;
+}
+
+// DEBUGGING FOR JQUERY SCRIPTS
+if (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) {
+    add_action ('wp_enqueue_scripts', 'wpcs_init');
+    add_action ('admin_enqueue_scripts', 'wpcs_init');
+}
+ 
+function wpcs_init() {
+    global $wp_scripts;
+    if (isset($wp_scripts->registered['jquery']->ver)) {
+        $jquery_version = $wp_scripts->registered['jquery']->ver;
+        wp_deregister_script ('jquery');
+        wp_register_script ('jquery', "http://ajax.googleapis.com/ajax/libs/jquery/{$jquery_version}/jquery.js");
+    }
+}
+
+/***** TINY MCE TINYMCE CHANGES *****/
+add_filter( 'mce_buttons_2', 'fb_mce_editor_buttons' );
+function fb_mce_editor_buttons( $buttons ) {
+
+    array_unshift( $buttons, 'styleselect' );
+    return $buttons;
+}
+
+/**
+ * Add styles/classes to the "Styles" drop-down
+ */ 
+add_filter( 'tiny_mce_before_init', 'fb_mce_before_init' );
+function fb_mce_before_init( $settings ) {
+    $style_formats = array(
+        array(
+            'title' => 'Button',
+            'selector' => 'a',
+            'classes' => 'button',
+            ),
+       array(
+            'title' => 'Orange Button',
+            'selector' => 'a',
+            'classes' => 'button orange',
+            ),
+        array(
+            'title' => 'Larger Text',
+            'inline' => 'span',
+            'classes' => 'larger',
+            'wrapper' => true,
+        ),
+        array(
+            'title' => 'Smaller Text',
+            'inline' => 'span',
+            'classes' => 'smaller',
+            'wrapper' => true,
+        ),
+    );
+
+    // Merge old & new styles
+    $settings['style_formats_merge'] = true;
+
+    $settings['style_formats'] = json_encode( $style_formats );
+    unset($settings['preview_styles']);
+    return $settings;
+}
+
+add_filter( 'gform_notification_5', 'route_notification', 1, 2 );
+function route_notification($notification, $form , $entry) {
+    global $post;
+    $email_to = get_post_meta($post->ID, 'email', true);
+    if ($email_to){
+        $notification['to'] = $email_to;
+    }
+    return $notification ;
+}
+
+add_action( 'after_setup_theme', 'my_theme_add_editor_fonts' );
+function my_theme_add_editor_fonts() {
+    $font_url = str_replace( ',', '%2C', '//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic' );
+    add_editor_style( $font_url );
+}
+
+/**
+* Merge Tags as Dynamic Population Parameters - gravity forms
+* http://gravitywiz.com/dynamic-products-via-post-meta/
+*/
+add_filter('gform_pre_render', 'gw_prepopluate_merge_tags');
+function gw_prepopluate_merge_tags($form) {
+    
+    $filter_names = array();
+    
+    foreach($form['fields'] as &$field) {
+        
+        if(!rgar($field, 'allowsPrepopulate'))
+            continue;
+        
+        // complex fields store inputName in the "name" property of the inputs array
+        if(is_array(rgar($field, 'inputs')) && $field['type'] != 'checkbox') {
+            foreach($field['inputs'] as $input) {
+                if(rgar($input, 'name'))
+                    $filter_names[] = array('type' => $field['type'], 'name' => rgar($input, 'name'));
+            }
+        } else {
+            $filter_names[] = array('type' => $field['type'], 'name' => rgar($field, 'inputName'));
+        }
+        
+    }
+    
+    foreach($filter_names as $filter_name) {
+        
+        $filtered_name = GFCommon::replace_variables_prepopulate($filter_name['name']);
+        
+        if($filter_name['name'] == $filtered_name)
+            continue;
+        
+        add_filter("gform_field_value_{$filter_name['name']}", create_function("", "return '$filtered_name';"));
+    }
+    
+    return $form;
+}

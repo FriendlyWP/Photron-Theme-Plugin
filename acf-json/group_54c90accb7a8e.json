@@ -1,6 +1,6 @@
 {
     "key": "group_54c90accb7a8e",
-    "title": "Home Content Blocks",
+    "title": "Home Content",
     "fields": [
         {
             "key": "field_54c90b0a77e7a",
@@ -80,5 +80,5 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "modified": 1422477338
+    "modified": 1424451716
 }

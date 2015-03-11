@@ -3,6 +3,30 @@
     "title": "Slideshow Content",
     "fields": [
         {
+            "key": "field_54fe18253222c",
+            "label": "Slider Type",
+            "name": "slider_type",
+            "prefix": "",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "regular": "Regular",
+                "centerFeature": "Center Featured",
+                "videos": "Videos"
+            },
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": "",
+            "layout": "vertical"
+        },
+        {
             "key": "field_54de408c601c9",
             "label": "Frames",
             "name": "frames",
@@ -18,8 +42,8 @@
             },
             "min": "",
             "max": "",
-            "layout": "table",
-            "button_label": "Add Row",
+            "layout": "row",
+            "button_label": "Add Slide",
             "sub_fields": [
                 {
                     "key": "field_54de40a3601ca",
@@ -123,6 +147,23 @@
                     "return_format": "id",
                     "preview_size": "large",
                     "library": "all"
+                },
+                {
+                    "key": "field_54fe2061e90ab",
+                    "label": "Video",
+                    "name": "video",
+                    "prefix": "",
+                    "type": "oembed",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "width": "",
+                    "height": ""
                 }
             ]
         }
@@ -134,6 +175,13 @@
                 "operator": "==",
                 "value": "tmpl-featured.php"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "slider"
+            }
         ]
     ],
     "menu_order": 0,
@@ -142,5 +190,5 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "modified": 1423851824
+    "modified": 1425940616
 }

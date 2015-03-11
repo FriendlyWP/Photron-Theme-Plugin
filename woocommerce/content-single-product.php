@@ -74,8 +74,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 				the_field('product_specifications'); 
 		} ?>
 		
-		<?php echo do_shortcode('[tabby title="Tech Specs"]'); 
-			 echo WC_Compare_Hook_Filter::show_compare_fields(get_queried_object_id()); ?>
+		<?php
+		// echo do_shortcode('[tabby title="Tech Specs"]'); 
+		//	 echo WC_Compare_Hook_Filter::show_compare_fields(get_queried_object_id()); 
+		?>
 
 		<?php 
 
@@ -98,10 +100,25 @@ if ( ! defined( 'ABSPATH' ) ) {
             }
 		?>
 
-		<?php if ( function_exists('get_field') && get_field('product_data_sheets') ) {
+		<?php /*if ( function_exists('get_field') && get_field('product_data_sheets') ) {
 			echo do_shortcode('[tabby title="DataSheet"]'); 
 				the_field('product_data_sheets'); 
-		} ?>
+		}*/
+		if (function_exists('get_field') && have_rows('data_sheets')) {
+			echo do_shortcode('[tabby title="DataSheet"]'); 
+			while( have_rows('data_sheets') ): the_row();
+				$file_title = get_sub_field('display_name');
+				$attachment_id = get_sub_field('file');
+				$url = wp_get_attachment_url( $attachment_id );
+				$filetype = wp_check_filetype( $url );
+				$type = $filetype['ext'];
+				if ($file_title == '') {
+					$file_title = get_the_title( $attachment_id );
+				}
+				echo '<a target="_blank" href="' . $url . '" class="button datasheet filetype filetype-' . $type . '">' . $file_title . '</a>';
+			endwhile;
+		}
+		 ?>
 		<?php echo do_shortcode('[tabbyending]'); ?>
 	</div>
 

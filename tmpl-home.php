@@ -5,20 +5,28 @@ Template Name: Home Page
  get_header(); ?>
 
 			<div id="content">
-				<?php //echo do_shortcode('[mbYTPlayer url="https://www.youtube.com/watch?v=b56tadIKKSw" opacity="1" quality="large" ratio="auto" isinline="true" playerwidth="800" playerheight="660" showcontrols="true" realfullscreen="true" printurl="true" autoplay="true" mute="true" loop="false" addraster="false" stopmovieonblur="false" gaTrack="false"]'); 
-
-				//echo '<div class="video-container fullback">' . wp_oembed_get( 'https://www.youtube.com/watch?v=b56tadIKKSw', array( 'autoplay' => 1, 'rel' => 0, 'showinfo' => 0, 'loop' => 1, 'controls' => 0, 'listType' => 'playlist', 'list' => 'PLo1FmDpu7xGcKSg4GqGTVq1dcSueBan0G' )  ) . '</div>';
- 	 
- 	 ////https://www.youtube.com/watch?v=OUjDiXqSoHA
-				//echo '<div class="video-container fullback">' . wp_oembed_get( 'https://www.youtube.com/watch?v=OUjDiXqSoHA', array( 'autoplay' => 1, 'loop' => 1, 'rel' => 0, 'showinfo' => 0,  'controls' => 0, 'playlist' => 'OUjDiXqSoHA'  )  ) . '</div>';LA6XSrM0V_0; PLo1FmDpu7xGcKSg4GqGTVq1dcSueBan0G
-
-				// PARAMETERS LIST: https://developers.google.com/youtube/player_parameters#loop
+				<?php // PARAMETERS LIST: https://developers.google.com/youtube/player_parameters#loop
 				?>
-				<!-- PLAYLIST VERSION-->
-				<div class="video-container fullback"><iframe src="http://www.youtube.com/embed/b56tadIKKSw?autoplay=1&enablejsapi=1&rel=0&showinfo=0&controls=0&loop=0&listType=playlist&list=PLo1FmDpu7xGcKSg4GqGTVq1dcSueBan0G&wmode=transparent" frameborder="0" allowfullscreen></iframe>​</div>
-				<!-- SINGLE VIDEO VERSION -->
-				<!-- THIS DOES NOT WORK YET, WMODE AND ZINDEX NOT RESPECTED SO NO CONTENT SHOWS ON TOP
-				 <div class="video-container fullback"><iframe src="http://www.youtube.com/v/LA6XSrM0V_0?autoplay=1&rel=0&showinfo=0&controls=0&loop=1&playlist=LA6XSrM0V_0&wmode=transparent" frameborder="0" allowfullscreen></iframe>​</div> -->
+
+
+				<?php 
+				if (function_exists('get_field')) {
+					
+
+					if ( (get_field('video_type') == 'Playlist') && get_field('playlist_url')) {
+						$playlistID = mkm_parse_url(get_field('playlist_url',false,false), 'list');
+						$vidID = mkm_parse_url(get_field('playlist_url',false,false), 'v');
+						//echo 'url=' . ;
+						//echo 'vidid=' . $vidID;
+						echo '<div class="video-container fullback"><iframe src="http://www.youtube.com/embed/' . $vidID . '?autoplay=1&enablejsapi=1&rel=0&showinfo=0&controls=0&loop=0&listType=playlist&list=' . $playlistID . '&wmode=transparent" frameborder="0" allowfullscreen></iframe>​</div>';
+					} elseif ( (get_field('video_type') == 'Single Video') && get_field('video_url')) {
+						$vidID = mkm_parse_url(get_field('video_url',false,false), 'v');
+						echo '<div class="video-container fullback"><iframe src="http://www.youtube.com/embed/' . $vidID . '?autoplay=1&enablejsapi=1&rel=0&showinfo=0&controls=0&loop=0&playlist=' . $vidID . '&wmode=transparent" frameborder="0" allowfullscreen></iframe>​</div>';
+					}
+
+				}
+				?>
+
 					<div id="inner-content" class="wrap cf">
 
 						<div id="main" class="main-content cf" role="main">

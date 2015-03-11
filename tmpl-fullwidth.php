@@ -6,7 +6,7 @@ get_header(); ?>
 
 			<div id="content">
 
-				<div id="inner-content" class="wrap cf">
+				<div id="inner-content" class="wrap full-width cf">
 						
 						<div id="main" class="main-content cf" role="main">
 							<?php if (function_exists('get_field') && get_field('banner_image')) {

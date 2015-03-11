@@ -9,7 +9,7 @@ Template Name: Featured Content
 					<div id="inner-content" class="full-width wrap cf">
 						<?php
 						 	// display either "slides" (images + links) from custom fields, or the featured image
-						    	get_template_part('loop', 'slides'); 
+						    //	get_template_part('loop', 'slides'); 
 						?>
 
 						<div id="main" class="main-content cf" role="main">

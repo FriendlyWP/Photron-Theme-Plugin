@@ -22,8 +22,11 @@
                   } else {
                     $link = get_permalink();
                   }
-                  if( ( $video_thumbnail = get_video_thumbnail() ) != null ) { 
-                    echo '<a href="' . $link . '" rel="lightbox-video-' . $count .'"><img src="' . $video_thumbnail . '" /></a>'; 
+                  $video_thumbnail = get_video_thumbnail();
+                  if( ( $video_thumbnail ) != null ) { 
+                    echo '<div class="vid">';
+                    echo '<a class="imglink play-button" href="' . $link . '&rel=0" rel="lightbox-video-' . $count .'"><img src="' . $video_thumbnail . '" /></a>'; 
+                    echo '</div>';
                   } 
 
                   if (function_exists('get_field') && get_field('video_description')) {

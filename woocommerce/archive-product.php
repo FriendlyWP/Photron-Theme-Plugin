@@ -11,9 +11,15 @@
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
-}
+} ?>
 
-get_header( 'shop' ); ?>
+
+<?php get_header( 'shop' ); ?>
+<!-- <div id="content">
+
+				<div id="inner-content" class="wrap full-width cf">
+						
+						<div id="main" class="main-content cf" role="main"> -->
 
 	<?php
 		/**
