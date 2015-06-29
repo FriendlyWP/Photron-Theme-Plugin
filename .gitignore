@@ -8,8 +8,8 @@
 !/some_other_files
 
 # Folder to not ignore
-!/wp-content/themes/photron-bones
-!/wp-content/plugins/photron-cpts-taxonomies
+!*/wp-content/themes/photron-bones
+!*/wp-content/plugins/photron-cpts-taxonomies
 
 ############
 ## Bones
