@@ -1,7 +1,9 @@
 # folders and files to be ignored by git
 
 # Ignore everything in repository root 
-/*
+*
+
+!*/
 
 # Files to not ignore
 !/.gitignore
