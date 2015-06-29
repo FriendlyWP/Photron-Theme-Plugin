@@ -42,23 +42,36 @@ get_header(); ?>
 								<?php if ( function_exists('yoast_breadcrumb') ) {
 										yoast_breadcrumb('<p id="breadcrumbs">','</p>');
 									} ?>
-								
-								<header class="article-header">
 
+								<?php
+									if ( has_post_thumbnail() ) { 
+										the_post_thumbnail( 'thumbnail', array( 'class' => 'alignright event-thumb', 'alt' => the_title_attribute( 'echo=0' ) ) );
+									} 							
+								?>
+								<?php
+									if ( has_post_thumbnail() ) { 
+										echo '<div class="has-thumb">';
+									}
+								?>
+								<header class="article-header">
 									<!-- Display event title -->
-									<h1 class="page-title"><?php the_title(); ?></h1>
+									<h1 class="page-title cf"><?php the_title(); ?></h1>
 								</header><!-- .entry-header -->
 
-								
-
-								<section class="entry-content clearfix" itemprop="articleBody">
-
+								<section class="entry-content cf" itemprop="articleBody">
+									
 									<!-- The content or the description of the event-->
 									<?php the_content(); ?>
 
 									<!-- Get event information, see template: event-meta-event-single.php -->
 									<?php eo_get_template_part('event-meta','event-single'); ?>
 								</section><!-- .entry-content -->
+
+								<?php
+									if ( has_post_thumbnail() ) { 
+										echo '</div>';
+									}
+								?>
 
 								<footer class="entry-meta">
 								<?php

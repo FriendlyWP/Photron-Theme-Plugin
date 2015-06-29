@@ -8,7 +8,8 @@
                 </header> <?php // end article header ?>
 
                 <section class="entry-content cf" itemprop="articleBody">
-                  <?php //echo get_template_part('content','map'); ?>
+                  <?php
+                    echo get_template_part('content','map'); ?>
 
                     <?php if (function_exists('get_field') && get_field('phone')) { ?>
                       <span class="distrib-info"><h6>Phone:</h6><?php the_field('phone'); ?><?php if (get_field('phone_2')) { echo ', ' . get_field('phone_2'); } ?></span>
@@ -24,24 +25,6 @@
                       <span class="distrib-info"><h6>Email:</h6><a href="mailto:<?php echo antispambot($email); ?>" target="_blank"><?php echo antispambot($email); ?></a></span>
                     <?php } ?>
 
-                    <?php
-                    $custom_states = get_the_terms($post->ID, 'distributor_state');
-                    if ( $custom_states && !is_wp_error($custom_states)) {
-                        
-                      foreach ($custom_states as $custom_state) {
-                       
-                        $state_list .= '<span class="item">' . $custom_state->name . '</span>';
-                      }
-                      if ( $state_list !== '' ) {
-                        echo '<span class="distrib-info"><h6>Serves:</h6><span class="serveslist">' . $state_list . '</span></span>';
-                      }
-
-                    }
-                   
-                    
-                    
-                    ?>
-                    
                     <h3>Contact</h3>
                     <?php 
                     echo do_shortcode('[gravityform id="5" title="false" description="false" tabindex="32"]');

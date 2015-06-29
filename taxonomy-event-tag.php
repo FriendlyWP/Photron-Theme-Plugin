@@ -48,49 +48,47 @@ get_header(); ?>
 				<?php /* Start the Loop */ ?>
 				<?php while ( have_posts() ) : the_post(); ?>
 								
-				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-					<header class="entry-header">
-
-				<h1 class="entry-title" style="display: inline;">
-				<a href="<?php the_permalink(); ?>">
-					<?php 
+				<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article">
+				<header class="entry-header">
+					<?php
+						//Format date/time according to whether its an all day event.
+						//Use microdata http://support.google.com/webmasters/bin/answer.py?hl=en&answer=176035
+ 						if( eo_is_all_day() ){
+							$format = 'd F Y';
+							$microformat = 'Y-m-d';
+						}else{
+							$format = 'd F Y '.get_option('time_format');
+							$microformat = 'c';
+						}?>
+						<time class="event-time" itemprop="startDate" datetime="<?php eo_the_start($microformat); ?>"><?php eo_the_start($format); ?></time>	
+					<h3 class="entry-title">
+					<!-- Output the date of the occurrence-->
+								
+					<?php
 						//If it has one, display the thumbnail
-						if( has_post_thumbnail() )
-							the_post_thumbnail('thumbnail', array('style'=>'float:left;margin-right:20px;'));
+						//the_post_thumbnail('thumbnail', array('style'=>'float:left;margin-right:20px;'));
+					?>
+					<a href="<?php the_permalink(); ?>"><?php the_title();?></a>
+					</h3>
 
-						//Display the title
-						the_title()
-					;?>
-				</a>
-				</h1>
-		
+				<div class="event-entry excerpt"><!-- Show Event text as 'the_excerpt' or 'the_content' -->
+					<?php the_excerpt(); ?></div>
+
 				<div class="event-entry-meta">
 
-					<!-- Output the date of the occurrence-->
-					<?php
-					//Format date/time according to whether its an all day event.
-					//Use microdata http://support.google.com/webmasters/bin/answer.py?hl=en&answer=176035
- 					if( eo_is_all_day() ){
-						$format = 'd F Y';
-						$microformat = 'Y-m-d';
-					}else{
-						$format = 'd F Y '.get_option('time_format');
-						$microformat = 'c';
-					}?>
-					<time itemprop="startDate" datetime="<?php eo_the_start($microformat); ?>"><?php eo_the_start($format); ?></time>
+					
 
 					<!-- Display event meta list -->
 					<?php echo eo_get_event_meta_list(); ?>
 
-					<!-- Show Event text as 'the_excerpt' or 'the_content' -->
-					<?php the_excerpt(); ?>
+					
 			
-				</div><!-- .event-entry-meta -->
+				</div><!-- .event-entry-meta -->			
 		
-					<div style="clear:both;"></div>
-					</header><!-- .entry-header -->
+				<div style="clear:both;"></div>
+				</header><!-- .entry-header -->
 
-				</article><!-- #post-<?php the_ID(); ?> -->
+			</article><!-- #post-<?php the_ID(); ?> -->
 
     				<?php endwhile; ?><!--The Loop ends-->
 

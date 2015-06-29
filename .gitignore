@@ -6,6 +6,10 @@
 
 Bones.esproj/
 woocommerce-OLD/
+.sass-cache
+.sass-cache/*
+**/.sass-cache
+**/.sass-cache/*
 
 ############
 ## IDEs

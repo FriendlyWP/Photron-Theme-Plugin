@@ -60,6 +60,7 @@ add_action( 'after_setup_theme', 'bones_ahoy' );
 // Thumbnail sizes
 
 add_image_size('tiny-thumb', 150);
+add_image_size('footer-thumb', 400, 225, true);
 
 add_filter( 'image_size_names_choose', 'bones_custom_image_sizes' );
 function bones_custom_image_sizes( $sizes ) {
@@ -286,7 +287,10 @@ function child_manage_woocommerce_styles() {
       wp_dequeue_script( 'fancybox' );
       wp_dequeue_script( 'jqueryui' );
     }
+
   }
+
+
 
 }
 
@@ -364,14 +368,15 @@ return $output;
 
 function get_terms_dropdown_link($taxonomy, $args, $default_text='Choose your country'){
   $myterms = get_terms($taxonomy, $args);
-  $output ="<select id='js-select' name='distributor-list form-control'>";
+  $output ="<select id='js-select-link' name='distributor-list form-control'>";
   $output .='<option value="">'. $default_text  . '</option>';
+  $root_url = get_bloginfo('url');
+  $term_taxonomy=$term->taxonomy;
   if ($taxonomy == 'distributor_country') {
-    $output .='<option value="united-states">United States</option>';  
+    $output .='<option value="' . $root_url . '/contact/distributors/country/united-states">United States</option>';  
   }
   foreach($myterms as $term){
-    $root_url = get_bloginfo('url');
-    $term_taxonomy=$term->taxonomy;
+    
     $term_slug=$term->slug;
     $term_name =$term->name;
     $term_url = get_term_link($term->slug, $term->taxonomy);
@@ -379,6 +384,35 @@ function get_terms_dropdown_link($taxonomy, $args, $default_text='Choose your co
     $output .="<option value='".$term_url."'>".$term_name."</option>";
   }
   $output .="</select>";
+return $output;
+}
+add_shortcode( 'distributor_dropdown', 'get_terms_dropdown_shortcode' );
+function get_terms_dropdown_shortcode($atts) {
+  extract( shortcode_atts( array(
+        'taxonomy' => '', // registered taxonomy id; for instance: distributor_country
+        'args' => '', // for get_terms; for instance: array('hide_empty=0,orderby=menu_order')
+        'default_text' => 'Choose your country',
+   ), $atts ) );
+  ob_start();
+  $myterms = get_terms($taxonomy, $args);
+  var_dump($myterms);
+  $output ="<select id='js-select-link' name='distributor-list form-control'>";
+  $output .='<option value="">'. $default_text  . '</option>';
+  $root_url = get_bloginfo('url');
+  $term_taxonomy=$term->taxonomy;
+  if ($taxonomy == 'distributor_country') {
+    $output .='<option value="' . $root_url . '/contact/distributors/country/united-states">United States</option>';  
+  }
+  foreach($myterms as $term){
+    
+    $term_slug=$term->slug;
+    $term_name =$term->name;
+    $term_url = get_term_link($term->slug, $term->taxonomy);
+    $link = $term_slug;
+    $output .="<option value='".$term_url."'>".$term_name."</option>";
+  }
+  $output .="</select>";
+  ob_get_clean();
 return $output;
 }
 
@@ -443,20 +477,24 @@ function fb_mce_before_init( $settings ) {
     return $settings;
 }
 
-add_filter( 'gform_notification_5', 'route_notification', 1, 2 );
-function route_notification($notification, $form , $entry) {
-    global $post;
-    $email_to = get_post_meta($post->ID, 'email', true);
-    if ($email_to){
-        $notification['to'] = $email_to;
-    }
-    return $notification ;
-}
-
 add_action( 'after_setup_theme', 'my_theme_add_editor_fonts' );
 function my_theme_add_editor_fonts() {
     $font_url = str_replace( ',', '%2C', '//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic' );
     add_editor_style( $font_url );
+}
+
+/***** GRAVITY FORMS ******/
+
+add_filter( 'gform_notification_5', 'route_notification', 1, 2 );
+function route_notification($notification, $form , $entry) {
+    global $post;
+    if ( ($notification["name"] == "Response to Form Submitter - US Version - ENGLISH") || ($notification["name"] == "Response to Form Submitter - US Version - Spanish") || ($notification["name"] == "Response to Form Submitter - US Version - Portuguese") ) { // The name of your admin notification 
+      $email_to = get_post_meta($post->ID, 'email', true);
+      if ($email_to){
+          $notification['to'] .= ',' . $email_to;
+      }
+    }
+    return $notification;
 }
 
 /**
@@ -496,4 +534,14 @@ function gw_prepopluate_merge_tags($form) {
     }
     
     return $form;
+}
+
+// ON EVENTS ARCHIVE ONLY SHOW 5 EVENTS IN LIST VIEW
+add_action('pre_get_posts', 'fwp_num_posts');
+function fwp_num_posts( $query ){
+    if ( ! is_admin() && $query->is_main_query() ) {
+      if ( is_post_type_archive( 'event' ) ) {
+        $query->set('posts_per_page', 5 );
+      }
+    }
 }

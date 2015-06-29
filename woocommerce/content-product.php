@@ -71,8 +71,21 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 		<?php if (function_exists('get_field') && get_field('short_product_description')) {
 			the_field('short_product_description');
 		} ?>
-		<?php echo get_the_term_list( $product->ID, 'product_tag', '<ul class="prod-tags"><li>', '</li><li>', '</li></ul>' ); ?>
-
+		<?php //echo get_the_term_list( $product->ID, 'product_tag', '<ul class="prod-tags"><li>', '</li><li>', '</li></ul>' ); ?>
+		
+		<?php 
+		if (function_exists('display_options')) {
+			echo '<ul class="prod-tags">'; 
+			echo display_options('memory_option');
+			echo display_options('resolution_option');
+			echo display_options('frame_rate_option');
+			echo display_options('full_res_fps_option');
+			echo display_options('sensitivity_option');
+			echo display_options('data_rate_option');
+			echo display_options('miscellaneous_option');
+			echo '</ul>';
+		}
+		?>
 	</div>
 
 	<div class="prod-link">

@@ -20,15 +20,15 @@
 
 //Call the template header
 get_header(); ?>
-	
-	<div id="content">
 
-		<div id="inner-content" class="wrap cf">
+<div id="content">
 
-				<div id="main" class="main-content cf" role="main">
-					<?php if ( function_exists('yoast_breadcrumb') ) {
-				yoast_breadcrumb('<p id="breadcrumbs">','</p>');
-			} ?>
+	<div id="inner-content" class="wrap cf">
+
+		<div id="main" class="main-content cf" role="main">
+			<?php if ( function_exists('yoast_breadcrumb') ) {
+			yoast_breadcrumb('<p id="breadcrumbs">','</p>');
+		} ?>
 
 		    	
 		<!-- Page header-->
@@ -64,18 +64,6 @@ get_header(); ?>
 
 			<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article">
 				<header class="entry-header">
-
-				<h1 class="entry-title" style="display: inline;">			
-				<?php
-					//If it has one, display the thumbnail
-					the_post_thumbnail('thumbnail', array('style'=>'float:left;margin-right:20px;'));
-				?>
-				<a href="<?php the_permalink(); ?>"><?php the_title();?></a>
-				</h1>
-
-				<div class="event-entry-meta">
-
-					<!-- Output the date of the occurrence-->
 					<?php
 						//Format date/time according to whether its an all day event.
 						//Use microdata http://support.google.com/webmasters/bin/answer.py?hl=en&answer=176035
@@ -86,13 +74,28 @@ get_header(); ?>
 							$format = 'd F Y '.get_option('time_format');
 							$microformat = 'c';
 						}?>
-						<time itemprop="startDate" datetime="<?php eo_the_start($microformat); ?>"><?php eo_the_start($format); ?></time>
+						<time class="event-time" itemprop="startDate" datetime="<?php eo_the_start($microformat); ?>"><?php eo_the_start($format); ?></time>	
+					<h3 class="entry-title">
+					<!-- Output the date of the occurrence-->
+								
+					<?php
+						//If it has one, display the thumbnail
+						//the_post_thumbnail('thumbnail', array('style'=>'float:left;margin-right:20px;'));
+					?>
+					<a href="<?php the_permalink(); ?>"><?php the_title();?></a>
+					</h3>
+
+				<div class="event-entry excerpt"><!-- Show Event text as 'the_excerpt' or 'the_content' -->
+					<?php the_excerpt(); ?></div>
+
+				<div class="event-entry-meta">
+
+					
 
 					<!-- Display event meta list -->
 					<?php echo eo_get_event_meta_list(); ?>
 
-					<!-- Show Event text as 'the_excerpt' or 'the_content' -->
-					<?php the_excerpt(); ?>
+					
 			
 				</div><!-- .event-entry-meta -->			
 		

@@ -46,7 +46,7 @@ body {
 #inner-header {
 	position:relative;
 	z-index:1000;
-	padding: 0em 0;
+	padding: 0;
 
 	.wrap {
 		background-color:transparent;
@@ -114,42 +114,64 @@ body {
 
 .distrib-info {
 	display:block;
+	margin-bottom:.375em;
 
 	h6 {
 		display: inline-block;
-		margin-right:1em;
+		margin:0 1em 0 0;
 	}
 }
 
 
 .distrib-deet {
 	margin-bottom:1.677em;
+	
 	h3 {
 		a, a:visited {
 			border-bottom: none;
 
+			i {
+				color:$light-orange;
+			}
+
 			&:hover {
 				color:$orange;
 			}
+
 		}
 	}
 
 	i {
 		font-size:.8em;
+		
 	}
 }
 
+i.gray {
+	color:$light-gray;
+}
+.serveslist {
+	.item {
 
+		&:after {
+			content: ', ';	
+		}
+		
+		&:last-child:after {
+			content:'';
+		}
+
+	}
+}
 
 .distributors-list {
 	width:100%;
-	margin-top:1.677em;
 
 	h2  {
 		a, a:visited {
 			border:none;
 			color:$yellow;	
-		}
+		} 
 		
 	}
 }
@@ -267,6 +289,7 @@ body {
 	img {
 		padding:0;
 		margin:0;
+		border:none;
 	}
 }
 
@@ -275,7 +298,7 @@ body {
 	padding:1em 0;
 }
 
-.home-blocks {
+.home-blocks, .featured-blocks {
 
 	h4 {
 		color:$yellow;
@@ -285,7 +308,7 @@ body {
 
 	}
 
-	> div {
+	& > div {
 		position:relative;
 		width: 100%;
 		color:$black;
@@ -319,6 +342,66 @@ body {
 	}
 }
 
+.featured-blocks {
+	margin-bottom:1.5em;
+	
+	& > div {
+		position:relative;
+		width: 100%;
+		color:$black;
+
+		p {
+			font-size: 1.1em;
+		}
+
+		h3, h5 {
+			a {
+				border:none;
+			}
+		}
+
+		h5 {
+			margin-bottom:0;
+			line-height: 1;
+		}
+
+		h3 {
+			border-bottom:1px solid $orange;
+			line-height: 1;
+
+			a, a:visited {
+				color:$orange;
+			}
+		}
+
+		@include breakpoint(tablet) {
+			max-width: 400px;
+			width: 30.8461538%;
+			margin-right:4.7307692%;	
+			float:left;
+		}
+
+		span {
+			/* background-color:$white; */
+			padding:.5rem;
+			display: block;
+		}
+
+		img {
+			width: 100%;
+			display: inline-block;
+			margin-bottom: .75em;
+		}
+
+		&:last-of-type {
+			margin-right: 0;
+		}
+
+		:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
 
 
 /*********************
@@ -342,6 +425,23 @@ a {
 
   &.imglink {
   	 border: none;
+  }
+
+  &.permalink {
+  	margin-left:.5em;
+  	padding-left:1.3em;
+  	position:relative;
+  	display: inline-block;
+  	border:none;
+
+  	&::before {
+  		content:'\f0c1';
+  		font-family: 'FontAwesome';
+  		display: inline-block;
+  		position:absolute;
+  		left:0;
+  		margin-right:.3em;
+  	}
   }
 }
 
@@ -553,7 +653,7 @@ a.trigger, .switch a {
 .question {
 	font-size:1.1em;
 	a, a:visited {
-		color:$light-blue;
+		color:$orange;
 		font-weight: 700;
 	}
 	
@@ -596,7 +696,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#85ffffff', e
 
 
 	p {
-		font-size: 1.2em;
+		font-size: 1.6em;
 	}
 		
 		:last-child {
@@ -703,6 +803,7 @@ img {
 	margin: 0 0 1.5em 0;
 	max-width: 100%;
 	height: auto;
+	border:1px solid darken($white,2%);
 
 	&.banner-image {
 		margin-bottom:.5em;
@@ -721,7 +822,6 @@ Align all images center for smallest screens
 	clear: both;
 
 	@include breakpoint(tablet) {
-		
 		margin-bottom: .677em;
 	}
 }
@@ -729,7 +829,7 @@ Align all images center for smallest screens
 .alignleft, img.alignleft {
 	@include breakpoint(tablet) {
 		margin-right: 1.5em;
-		float: left;
+		float: left; 
 		display: inline;
 		max-width: 45%;
 	}
@@ -781,6 +881,24 @@ ul {
 			padding:0 .4em 0 0;
 		}
 	} 
+}
+
+.table-container {
+	position: relative;
+	padding-bottom: 75%;
+	padding-top: 30px;
+	height: 0;
+	width:100%;
+	overflow: hidden;
+	margin-bottom:1.677em;
+
+	iframe, object, embed {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
 }
 
 .video-container {
@@ -963,7 +1081,7 @@ PAGE NAVI STYLES
 
 .columns-2 {
 	& > div {
-		-webkit-column-count: 2;
+		/* -webkit-column-count: 2;
     -moz-column-count: 2;
          column-count: 2;
   -webkit-column-gap: 4em;
@@ -971,7 +1089,17 @@ PAGE NAVI STYLES
   column-gap: 4em;
   -webkit-column-break-inside: avoid;
           page-break-inside: avoid;
-               break-inside: avoid;	
+               break-inside: avoid;	 */
+
+       div {
+       	width: 48%;
+       	margin-right:2%;
+       	float:left;
+
+       	&:last-of-type {
+       		margin-right: 0;
+       	}
+       } 
 	}
 	 
 }
@@ -996,12 +1124,78 @@ PRODUCT STUFF
 
 .prod-tags {
 	margin-left:0;
-	font-size:.9em;
+	font-size:1.1em;
 
 	li {
 		display: inline-block;
 		margin-right: .677em;
 		padding:0;
+
+		&.resolution_option {
+			a, a:visited {
+				background-color:$orange;
+				color:$white;
+			}
+		}
+
+		&.frame_rate_option {
+			a, a:visited {
+				background-color:$lightest-yellow;
+				color:$black;
+			}
+		}
+
+		&.full_res_fps_option {
+			a, a:visited {
+				background-color:$light-yellow;
+				color:$black;
+			}
+		}
+
+		&.data_rate_option {
+			a, a:visited {
+				background-color:$green;
+				color:$black;
+			}
+		}
+
+		&.sensitivity_option {
+			a, a:visited {
+				background-color:$lightest-orange;
+				color:$black;
+			}
+		}
+
+		&.miscellaneous_option {
+			a, a:visited {
+				background-color:$lightest-gray;
+				color:$black;
+			}
+
+			&:nth-of-type(2n) {
+				a, a:visited {
+					background-color:darken($lightest-gray, 5%);
+				}
+			}
+
+			&:nth-of-type(3n) {
+				a, a:visited {
+					background-color:darken($lightest-gray, 10%);
+				}	
+			}
+
+			&:nth-of-type(4n) {
+				a, a:visited {
+					background-color:darken($lightest-gray, 15%);
+				}	
+			}
+
+			&:nth-of-type(5n) {
+				a, a:visited {
+					background-color:darken($lightest-gray, 20%);
+				}	
+			}
+		}
 
 		a, a:visited {
 			@extend %btn;
@@ -1009,7 +1203,7 @@ PRODUCT STUFF
 			color:$black;
 
 			&:hover {
-				background-color:darken($light-blue, 20%);
+				background-color:$purple !important;
 				color:$white;
 			}
 		}
@@ -1356,4 +1550,218 @@ FOOTER STYLES
 div.dark_square .pp_arrow_previous,
 div.dark_square .pp_arrow_next {
 	margin-top:.5em;
+}
+
+
+
+/** TOOLTIPS */
+/**
+ * Tooltips!
+ */
+
+/* Base styles for the element that has a tooltip */
+[data-tooltip],
+.tooltip {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Base styles for the entire tooltip */
+[data-tooltip]:before,
+[data-tooltip]:after,
+.tooltip:before,
+.tooltip:after {
+  position: absolute;
+  visibility: hidden;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  -webkit-transition: 
+      opacity 0.2s ease-in-out,
+        visibility 0.2s ease-in-out,
+        -webkit-transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+    -moz-transition:    
+        opacity 0.2s ease-in-out,
+        visibility 0.2s ease-in-out,
+        -moz-transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+    transition:         
+        opacity 0.2s ease-in-out,
+        visibility 0.2s ease-in-out,
+        transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform:    translate3d(0, 0, 0);
+  transform:         translate3d(0, 0, 0);
+  pointer-events: none;
+}
+
+/* Show the entire tooltip on hover and focus */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after,
+[data-tooltip]:focus:before,
+[data-tooltip]:focus:after,
+.tooltip:hover:before,
+.tooltip:hover:after,
+.tooltip:focus:before,
+.tooltip:focus:after {
+  visibility: visible;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+
+/* Base styles for the tooltip's directional arrow */
+.tooltip:before,
+[data-tooltip]:before {
+  z-index: 1001;
+  border: 6px solid transparent;
+  background: transparent;
+  content: "";
+}
+
+/* Base styles for the tooltip's content area */
+.tooltip:after,
+[data-tooltip]:after {
+  z-index: 1000;
+  padding: 8px;
+  width: 160px;
+  background-color: #000;
+  background-color: hsla(0, 0%, 20%, 0.9);
+  color: #fff;
+  content: attr(data-tooltip);
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+/* Directions */
+
+/* Top (default) */
+[data-tooltip]:before,
+[data-tooltip]:after,
+.tooltip:before,
+.tooltip:after,
+.tooltip-top:before,
+.tooltip-top:after {
+  bottom: 100%;
+  left: 50%;
+}
+
+[data-tooltip]:before,
+.tooltip:before,
+.tooltip-top:before {
+  margin-left: -6px;
+  margin-bottom: -12px;
+  border-top-color: #000;
+  border-top-color: hsla(0, 0%, 20%, 0.9);
+}
+
+/* Horizontally align top/bottom tooltips */
+[data-tooltip]:after,
+.tooltip:after,
+.tooltip-top:after {
+  margin-left: -80px;
+}
+
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after,
+[data-tooltip]:focus:before,
+[data-tooltip]:focus:after,
+.tooltip:hover:before,
+.tooltip:hover:after,
+.tooltip:focus:before,
+.tooltip:focus:after,
+.tooltip-top:hover:before,
+.tooltip-top:hover:after,
+.tooltip-top:focus:before,
+.tooltip-top:focus:after {
+  -webkit-transform: translateY(-12px);
+  -moz-transform:    translateY(-12px);
+  transform:         translateY(-12px); 
+}
+
+/* Left */
+.tooltip-left:before,
+.tooltip-left:after {
+  right: 100%;
+  bottom: 50%;
+  left: auto;
+}
+
+.tooltip-left:before {
+  margin-left: 0;
+  margin-right: -12px;
+  margin-bottom: 0;
+  border-top-color: transparent;
+  border-left-color: #000;
+  border-left-color: hsla(0, 0%, 20%, 0.9);
+}
+
+.tooltip-left:hover:before,
+.tooltip-left:hover:after,
+.tooltip-left:focus:before,
+.tooltip-left:focus:after {
+  -webkit-transform: translateX(-12px);
+  -moz-transform:    translateX(-12px);
+  transform:         translateX(-12px); 
+}
+
+/* Bottom */
+.tooltip-bottom:before,
+.tooltip-bottom:after {
+  top: 100%;
+  bottom: auto;
+  left: 50%;
+}
+
+.tooltip-bottom:before {
+  margin-top: -12px;
+  margin-bottom: 0;
+  border-top-color: transparent;
+  border-bottom-color: #000;
+  border-bottom-color: hsla(0, 0%, 20%, 0.9);
+}
+
+.tooltip-bottom:hover:before,
+.tooltip-bottom:hover:after,
+.tooltip-bottom:focus:before,
+.tooltip-bottom:focus:after {
+  -webkit-transform: translateY(12px);
+  -moz-transform:    translateY(12px);
+  transform:         translateY(12px); 
+}
+
+/* Right */
+.tooltip-right:before,
+.tooltip-right:after {
+  bottom: 50%;
+  left: 100%;
+}
+
+.tooltip-right:before {
+  margin-bottom: 0;
+  margin-left: -12px;
+  border-top-color: transparent;
+  border-right-color: #000;
+  border-right-color: hsla(0, 0%, 20%, 0.9);
+}
+
+.tooltip-right:hover:before,
+.tooltip-right:hover:after,
+.tooltip-right:focus:before,
+.tooltip-right:focus:after {
+  -webkit-transform: translateX(12px);
+  -moz-transform:    translateX(12px);
+  transform:         translateX(12px); 
+}
+
+/* Move directional arrows down a bit for left/right tooltips */
+.tooltip-left:before,
+.tooltip-right:before {
+  top: 3px;
+}
+
+/* Vertically center tooltip content for left/right tooltips */
+.tooltip-left:after,
+.tooltip-right:after {
+  margin-left: 0;
+  margin-bottom: -16px;
 }

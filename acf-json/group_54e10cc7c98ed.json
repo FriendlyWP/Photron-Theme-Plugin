@@ -6,7 +6,6 @@
             "key": "field_54fe071012520",
             "label": "Short Product Description",
             "name": "short_product_description",
-            "prefix": "",
             "type": "wysiwyg",
             "instructions": "",
             "required": 0,
@@ -25,7 +24,6 @@
             "key": "field_54e10cdcae427",
             "label": "Product Features",
             "name": "product_features",
-            "prefix": "",
             "type": "wysiwyg",
             "instructions": "",
             "required": 0,
@@ -41,10 +39,30 @@
             "media_upload": 1
         },
         {
+            "key": "field_5589c43198d4a",
+            "label": "Specs & Frame Rates",
+            "name": "product_spec_tables",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
             "key": "field_54e10d08ae428",
             "label": "Product Specifications",
             "name": "product_specifications",
-            "prefix": "",
             "type": "wysiwyg",
             "instructions": "",
             "required": 0,
@@ -63,7 +81,6 @@
             "key": "field_54e10d1fae429",
             "label": "Product Data Sheets",
             "name": "product_data_sheets",
-            "prefix": "",
             "type": "wysiwyg",
             "instructions": "",
             "required": 0,
@@ -82,7 +99,6 @@
             "key": "field_5500626b6f0e5",
             "label": "Data Sheets",
             "name": "data_sheets",
-            "prefix": "",
             "type": "repeater",
             "instructions": "",
             "required": 0,
@@ -101,7 +117,6 @@
                     "key": "field_5500627d6f0e6",
                     "label": "Display Name",
                     "name": "display_name",
-                    "prefix": "",
                     "type": "text",
                     "instructions": "This must be entered",
                     "required": 0,
@@ -123,7 +138,6 @@
                     "key": "field_550062a56f0e7",
                     "label": "File",
                     "name": "file",
-                    "prefix": "",
                     "type": "file",
                     "instructions": "",
                     "required": 0,
@@ -157,5 +171,5 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "modified": 1426090316
+    "modified": 1435093348
 }

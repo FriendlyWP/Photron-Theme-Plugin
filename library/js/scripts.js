@@ -7,16 +7,16 @@ jQuery(document).ready(function($) {
   // ADD CLASS TO LINKS CONTAINING IMAGES
   $('a:has(img)').addClass('imglink');
 
-   /*	$('.js-box').hide();
+   	$('.js-box').hide();
 	$('#js-select').change(function() {
 	    $('.js-box').hide();
 	    if($(this).val()) {
 	    	$('.' + $(this).val()).show();	
 	    }
 	    
-	}).trigger('change');*/
+	}).trigger('change');
 
-$('#js-select').change(function() {
+$('#js-select-link').change(function() {
 	    //$('.js-box').hide();
 	    if($(this).val()) {
 	    	window.location = $(this).val();	

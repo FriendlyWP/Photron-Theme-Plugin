@@ -63,6 +63,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div><!-- .summary -->
 
 	<div class="moreinfo">
+		
+		<?php echo '<ul class="prod-tags">'; 
+		echo display_options('memory_option');
+		echo display_options('resolution_option');
+		echo display_options('frame_rate_option');
+		echo display_options('full_res_fps_option');
+		echo display_options('sensitivity_option');
+		echo display_options('data_rate_option');
+		echo display_options('miscellaneous_option');
+		echo '</ul>';
+		?>
 		<?php //echo do_shortcode('[tabby title="General"]'); ?>
 			<?php //the_content(); ?>
 		<?php if ( function_exists('get_field') && get_field('product_features') ) {
@@ -117,6 +128,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 				}
 				echo '<a target="_blank" href="' . $url . '" class="button datasheet filetype filetype-' . $type . '">' . $file_title . '</a>';
 			endwhile;
+		}
+
+		if (function_exists('get_field') && get_field('product_spec_tables')) {
+			$prod_spec = get_field('product_spec_tables');
+			echo do_shortcode('[tabby title="Specs & Frame Rates"]'); 
+			echo '<div class="table-container"><iframe src="' . $prod_spec . '"></iframe></div>';
 		}
 		 ?>
 		<?php echo do_shortcode('[tabbyending]'); ?>

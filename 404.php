@@ -24,9 +24,9 @@
 
 									<p><?php get_search_form(); ?></p>
 
-									<h1>Site Map</h1>
+									<!-- <h1>Site Map</h1> -->
 
-									<?php get_template_part('content','sitemap'); ?>
+									<?php //get_template_part('content','sitemap'); ?>
 
 							</section>
 
