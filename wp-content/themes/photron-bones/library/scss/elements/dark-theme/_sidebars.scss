@@ -1,0 +1,160 @@
+
+
+.footer-widgets, .full-width .sidebar {
+	/* one item */
+	.widget:first-child:nth-last-child(1) {
+		width: 100%;
+	}
+
+	/* two items */
+	.widget:first-child:nth-last-child(2),
+	.widget:first-child:nth-last-child(2) ~ .widget {
+		width: 47.7678571%;
+		margin-right: 4.4642857%;
+	}
+
+	/* three items */
+	.widget:first-child:nth-last-child(3),
+	.widget:first-child:nth-last-child(3) ~ .widget {
+		max-width: 425px;
+		width: 30.3571428%;
+		margin-right: 4.4642857%;
+	}
+
+	/* four items */
+	.widget:first-child:nth-last-child(4),
+	.widget:first-child:nth-last-child(4) ~ .widget {
+		max-width: 303px;
+		width: 21.6428571%;
+		margin-right: 4.4642857%;
+	}
+
+	/* five items */
+	.widget:first-child:nth-last-child(5),
+	.widget:first-child:nth-last-child(5) ~ .widget {
+		max-width: 241px;
+		width: 14.2857142%;
+		margin-right: 3.4285714%;
+	}
+
+	/* six items */
+	.widget:first-child:nth-last-child(6),
+	.widget:first-child:nth-last-child(6) ~ .widget {
+		max-width: 200px;
+		width: 17.25%;
+		margin-right: 2.8571428%;
+	}
+
+	.widget:last-of-type {
+		margin-right: 0 !important;
+	}
+}
+
+
+.widget {
+	margin-bottom:1.5em;
+	padding: 1.5em;
+	color:$white;
+
+	a, a:visited {
+		color:$white;
+		border: none;
+
+	}
+
+	.footer-widgets &, .full-width .sidebar & {
+		/* width: 28.8461538%;
+		margin-right:6.7307692%;	 */
+		float:left;
+		padding:0;
+
+		&.span-1 {
+			max-width: 425px;
+		width: 30.3571428% !important;
+		margin-right: 4.4642857% !important;
+		}
+
+		&.span-2 {
+			width: 65.1785714% !important;
+			max-width: 912px !important;
+		}
+
+		&:last-of-type {
+			margin-right:0;
+		}
+
+
+	}
+
+	.full-width .sidebar & {
+		 padding:2%; 
+	}
+}
+
+
+.widgettitle {
+	
+	.footer & {
+		color:$yellow;
+		border-bottom: 1px solid $light-orange;
+		font-weight: 300;
+	}
+}
+
+.sidebar {
+	margin-top:-.25em;
+
+	.full-width & {
+		margin-top:1em;
+	}
+
+	.widget {
+		border:.25em solid $black;
+	}
+	.widget-even {
+		background-color: $dark-purple;
+	}
+
+	.widget-odd {
+		background-color: $light-blue;
+	}	
+
+	.advanced-sidebar-menu {
+		background-color:$orange;
+	}
+}
+
+
+.parent-sidebar-menu {
+	margin-left:0;
+	margin-bottom:0;
+	list-style-type: none;
+
+	> li {
+		margin-bottom: 0;
+
+		> a {
+			display: inline-block;
+			font-size: 1.2em;
+			margin-bottom: .5em;
+		}
+	}
+
+	.current_page_item {
+
+		> a {
+
+			color:$lightest-yellow;
+		}
+	}
+}
+
+.child-sidebar-menu {
+	font-size:1.1em;
+	list-style-type: square;
+	margin-bottom:0;
+
+	li:last-of-type {
+		margin-bottom: 0;
+	}
+}

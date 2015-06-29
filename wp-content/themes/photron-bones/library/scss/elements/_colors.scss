@@ -1,0 +1,55 @@
+/******************************************************************
+Colors
+******************************************************************/
+
+$alert-yellow:      #ebe16f;
+$alert-red:         #fbe3e4;
+$alert-green:       #e6efc2;
+$alert-blue:        #d5edf8;
+
+$black:             #000;
+$light-black:		#161616;
+$white:             #FDFDFC;
+
+$lightest-gray:        #edece8;
+$light-gray:		#DFDED8;
+$gray:              #8D8E7E;
+$dark-gray:			#111111;
+
+$red:				#ff0000;
+
+$lightest-orange:	#f7a639;
+$light-orange:		#e58505;
+$orange:			#ba6b00;
+$dark-orange:		#975600;
+$darkest-orange:	#6c3d00;
+
+$lightest-yellow:	#f7c839;
+$light-yellow:		#e5ad05;
+$yellow:			#ba8c00;
+$dark-yellow:		#977100;
+$darkest-yellow:	#6c5100;
+
+$green:             #C8E052;
+
+$lightest-purple:	#3c3cad;
+$light-purple:		#1b1ba0;
+$purple:			#121283;
+$dark-purple:		#0b0b6a;
+$darkest-purple:	#05054b;
+
+/* $lightest-blue:		lighten(#2c6d9f, 50%); */
+$lightest-blue:		#EDEDF4;
+$light-blue:		#D4F1F7;
+$blue:				#149cb8;
+$dark-blue:			#043961;
+$darkest-blue:		#022845;
+
+$link-color:        $blue;
+$link-hover:        darken($link-color, 2%);
+
+$border-color:      $light-black;
+$disabled-color:    $light-gray;
+
+$text-color:        $black;
+$meta-color:        $light-gray;

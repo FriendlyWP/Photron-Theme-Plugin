@@ -1,0 +1,325 @@
+/*********************
+NAVIGATION STYLES
+*********************/
+
+#menu-social-menu {
+	margin-top:0em;
+}
+
+#my-content #my-menu {
+   display: none; 
+}
+
+#my-menu:not( .mm-menu ) {
+  display: none; 
+}
+
+.social-search {
+	font-size:.8em;
+	text-align:top;
+	position:relative;
+	float:right;
+	width: 30%;
+	text-align: right;
+	margin-top: .5em;
+
+}
+
+.main-menu {
+	
+
+	@include breakpoint(laptop) {
+		float:left;
+		width: 66%;
+	}
+}
+.topbar {
+	background-color:$black;
+	padding:.25em 1em;
+	text-align: center;
+	vertical-align: top;
+	position: relative;
+	border-top:1px solid $light-black;
+	box-shadow:2px 2px 3px $light-black;
+
+
+	@include breakpoint(laptop) {
+		padding: 5px 0 4px;
+		/* position:absolute;
+		top:.25em;
+		right:0; */
+
+		line-height: 1em;
+	}
+
+	.login, input, .social-nav > li > a {
+		display: inline-block;
+		height:30px;
+		line-height: 30px;
+		vertical-align: top;
+	}
+
+	.social-nav li a {
+		padding: 0 .75em;
+		vertical-align: middle;
+		color:$meta-color;
+		font-size: .8em;
+
+		i {
+			display: inline-block;
+			line-height: 30px;
+		}
+
+	}
+
+	.login {
+		border:none;
+		background-color:$link-color;
+		color:$white;
+		font-size:1.1em;
+		padding-left:.5em;
+		padding-right: .5em;
+	}
+
+	.searchform {
+		position:relative;
+		display: inline-block;
+		text-align: right;
+		color: $meta-color;
+		margin-right: 1em;
+
+		input, button {
+			margin:0;
+			float:left;
+			padding-right:2.1rem;
+		}
+
+		input {
+			width:100%;
+			color:$meta-color;
+			background-color:$light-black;
+		}
+
+		button {
+			position: absolute;
+			background-color:transparent;
+			border: none;
+			font-size: 20px;
+			line-height: 26px;
+			right:-1.5rem;
+			color: $meta-color;
+		}
+	}
+}
+
+
+.menu-toggler {
+	border: none;
+	font-size:2em;
+	color:$white;
+	float:left;
+
+	@include breakpoint(laptop) {
+		display:none;
+	}
+}
+
+#menu-social-menu {
+	display:none;
+
+	@include breakpoint(laptop) {
+		display:inline-block;
+		text-align: right;
+		vertical-align: top;
+
+		li {
+			float: none;
+			display: inline-block;
+		}
+	}
+}
+
+.topmenu {
+	background-color:$blue;
+	margin:1em 0 0 ;
+}
+
+.top-nav {
+
+	/* .menu-item-has-children {
+		& > a:after {
+			padding-left:.3em;
+			font-size: .8em;
+			content:"\f101";
+			font-family: FontAwesome;
+			width:.8rem;
+			display: inline-block;
+		}
+	}
+
+	& > .menu-item-has-children {
+		&:hover {
+			> a:after {
+				content:"\f103";
+				width:.8rem;
+			}
+		}
+	} */
+}
+
+
+.nav {
+	border-bottom: 0;
+	margin: 0;
+	font-family:$title-family;
+
+	&.top-nav {
+		width:100%;
+		padding:0;
+		display: none;
+		line-height: .5em;
+		margin-left:-.75em;
+
+		@include breakpoint(laptop) {
+			display:block;
+		}
+	}
+
+	/* equally spaces out list items in main menu, see http://css-tricks.com/equidistant-objects-with-css/ */
+	/* &.top-nav:after {
+		content:'';
+		width:100%;
+		display: inline-block;
+		height:0;
+		line-height: 0;
+		font-size:0;
+	} */
+
+	li {
+		list-style: none;
+		padding:0;
+		margin:0;
+
+		a, a:visited {
+			display: block;
+			color: $white;
+			border: none;
+			padding: 0.75em;
+			font-size:.9em;
+			text-transform: uppercase;
+
+			@include breakpoint(desktop) {
+				font-size: 1em;
+			}
+
+			@include breakpoint(tv) {
+				font-size: 1.1em;
+			}
+
+			&:hover, &:focus {
+				color: $white;
+			}
+		}
+
+		&.current-menu-ancestor, &.current-menu-item {
+			> a {
+				font-weight: 700;	
+			}
+			
+		}
+
+		@include breakpoint(laptop) {
+			float: left;
+			position: relative;
+
+			ul.sub-menu,
+			ul.children {
+				background-color: $link-color;
+				display: none;
+				font-size: .9em;
+				padding:0;
+				margin:0;
+				width:auto;
+				border-top: 0;
+				position: absolute;
+				z-index: 8999;
+				text-align:left;
+				box-shadow: .2em .2em .2em rgba(102, 102, 102, .3);
+
+				li {
+
+					a {
+						padding-left: 1em;
+						border-right: 0;
+						display: block;
+						width: 180px;
+						line-height: 1em;
+						text-transform: none;
+						border-bottom: 1px dotted $white;
+
+						&:hover,
+						&:focus {}
+
+						&:link {}
+					}
+
+					&:first-child {}
+
+					&:last-child {
+
+						a {
+							border-bottom: 0;
+						}
+					}
+					ul, ul ul {
+						top:0;
+						left:100%;
+
+						li:last-child {
+							a {
+								margin-bottom:0;
+								border-color: transparent;	
+							}
+							
+						}
+						
+					}
+				}
+
+				/* highlight sub-menu current page */
+				li.current-menu-item,
+				li.current_page_item,
+				li.current-page-ancestor {
+					& > a {
+						border: none;
+					}
+				}
+			}
+
+			&:hover > ul {
+				display: block;
+				visibility: visible;
+				top:98%;
+				left:0;
+				@include transition(all .5s ease);
+			}
+
+			&:last-of-type:hover > ul {
+				display: block;
+				visibility: visible;
+				right:0;
+				left:auto;
+			}
+		}
+	} /* end .menu li */
+
+
+} /* end .nav */
+
+#inner-footer nav {
+	display: none;
+
+	@include breakpoint(laptop) {
+		display: inline-block;
+	}
+}
