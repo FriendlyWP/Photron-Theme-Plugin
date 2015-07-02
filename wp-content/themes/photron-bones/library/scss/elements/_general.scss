@@ -216,7 +216,7 @@ i.gray {
 }
 
 .site-description {
-	display:block;
+	display:none;
 	width:100%;
 	position:absolute;
 	top:0;
@@ -246,6 +246,10 @@ i.gray {
 	.home & {
 		display: none;
 	}
+
+	@include breakpoint(tablet) {
+		display: block;
+	}
 }
 
 #logo {
@@ -270,7 +274,7 @@ i.gray {
 		display: inline-block;
 		background-color:$purple;
 		width:500%;
-		height: 100%;
+		height: 100%; 
 	}
 
 	&:after {
@@ -377,7 +381,7 @@ i.gray {
 		@include breakpoint(tablet) {
 			max-width: 400px;
 			width: 30.8461538%;
-			margin-right:4.7307692%;	
+			margin-right:3.7307692%;	
 			float:left;
 		}
 

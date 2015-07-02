@@ -1669,3 +1669,148 @@ function display_options($option_name) {
 	}
 	return $display;
 }
+
+
+// SHOW MENU DESCRIPTIONS
+class Menu_With_Description extends Walker_Nav_Menu {
+
+	// HELPS DETERMINE IF MENU-ITEM HAS CHILDREN
+	// via $item->hasChildren
+	function display_element ($element, &$children_elements, $max_depth, $depth = 0, $args, &$output)
+    {
+        // check, whether there are children for the given ID and append it to the element with a (new) ID
+        $element->hasChildren = isset($children_elements[$element->ID]) && !empty($children_elements[$element->ID]);
+
+        return parent::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
+    }
+
+
+
+  function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+    $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
+
+    $classes = empty( $item->classes ) ? array() : (array) $item->classes;
+    $classes[] = 'menu-item-' . $item->ID;
+
+    /**
+     * Filter the CSS class(es) applied to a menu item's <li>.
+     *
+     * @since 3.0.0
+     *
+     * @see wp_nav_menu()
+     *
+     * @param array  $classes The CSS classes that are applied to the menu item's <li>.
+     * @param object $item    The current menu item.
+     * @param array  $args    An array of wp_nav_menu() arguments.
+     */
+    $class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args ) );
+    $class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
+
+    /**
+     * Filter the ID applied to a menu item's <li>.
+     *
+     * @since 3.0.1
+     *
+     * @see wp_nav_menu()
+     *
+     * @param string $menu_id The ID that is applied to the menu item's <li>.
+     * @param object $item    The current menu item.
+     * @param array  $args    An array of wp_nav_menu() arguments.
+     */
+    $id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args );
+    $id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
+
+    $output .= $indent . '<li' . $id . $class_names .'>';
+
+    $atts = array();
+    $atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
+    $atts['target'] = ! empty( $item->target )     ? $item->target     : '';
+    $atts['rel']    = ! empty( $item->xfn )        ? $item->xfn        : '';
+    $atts['href']   = ! empty( $item->url )        ? $item->url        : '';
+
+    /**
+     * Filter the HTML attributes applied to a menu item's <a>.
+     *
+     * @since 3.6.0
+     *
+     * @see wp_nav_menu()
+     *
+     * @param array $atts {
+     *     The HTML attributes applied to the menu item's <a>, empty strings are ignored.
+     *
+     *     @type string $title  Title attribute.
+     *     @type string $target Target attribute.
+     *     @type string $rel    The rel attribute.
+     *     @type string $href   The href attribute.
+     * }
+     * @param object $item The current menu item.
+     * @param array  $args An array of wp_nav_menu() arguments.
+     */
+    $atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args );
+
+    $attributes = '';
+    foreach ( $atts as $attr => $value ) {
+      if ( ! empty( $value ) ) {
+        $value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
+        $attributes .= ' ' . $attr . '="' . $value . '"';
+      }
+    }
+
+    // Build the description (you may need to change the depth to 0, 1, or 2)
+    if ( ! empty ( $item->description ) and 0 == $depth ) {
+      $description = '<span class="nav-desc">'.  $item->description . '</span>';
+    }  else {
+      $description = '';
+    } 
+
+    $item_output = $args->before;
+    $item_output .= '<a'. $attributes .'>';
+    /** This filter is documented in wp-includes/post-template.php */
+    $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+    
+    $item_output .= '</a>';
+    if (0 == $depth && !empty( $item->description )) {
+      $item_output .= '<div class="sub-menu-content">' . $description;  
+    } elseif (0 == $depth && $item->hasChildren) {
+    	$item_output .= '<div class="sub-menu-content">';  
+    }
+    $item_output .= $args->after;
+
+    /**
+     * Filter a menu item's starting output.
+     *
+     * The menu item's starting output only includes $args->before, the opening <a>,
+     * the menu item's title, the closing </a>, and $args->after. Currently, there is
+     * no filter for modifying the opening and closing <li> for a menu item.
+     *
+     * @since 3.0.0
+     *
+     * @see wp_nav_menu()
+     *
+     * @param string $item_output The menu item's starting HTML output.
+     * @param object $item        Menu item data object.
+     * @param int    $depth       Depth of menu item. Used for padding.
+     * @param array  $args        An array of wp_nav_menu() arguments.
+     */
+    $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+  }
+
+  /**
+   * Ends the element output, if needed.
+   *
+   * @see Walker::end_el()
+   *
+   * @since 3.0.0
+   *
+   * @param string $output Passed by reference. Used to append additional content.
+   * @param object $item   Page data object. Not used.
+   * @param int    $depth  Depth of page. Not Used.
+   * @param array  $args   An array of arguments. @see wp_nav_menu()
+   */
+  public function end_el( &$output, $item, $depth = 0, $args = array() ) {
+    if (0 == $depth && $item->hasChildren) {
+      $output .= "</div>\n";
+    }
+    $output .= "</li>\n";
+  }
+}

@@ -80,10 +80,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 			echo do_shortcode('[tabby title="Key Features"]'); 
 				the_field('product_features'); 
 		} ?>
-		<?php if ( function_exists('get_field') && get_field('product_specifications') ) {
+		<?php /*if ( function_exists('get_field') && get_field('product_specifications') ) {
 			echo do_shortcode('[tabby title="Specifications"]'); 
 				the_field('product_specifications'); 
-		} ?>
+		} */ ?>
 		
 		<?php
 		// echo do_shortcode('[tabby title="Tech Specs"]'); 

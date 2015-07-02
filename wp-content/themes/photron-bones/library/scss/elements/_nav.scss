@@ -14,12 +14,20 @@ NAVIGATION STYLES
   display: none; 
 }
 
+.mm-zoom-menu #logo {
+	padding-left:3em;
+	
+	&:before {
+		display:none;
+	}
+}
+
 .social-search {
 	font-size:.8em;
 	text-align:top;
 	position:relative;
 	float:right;
-	width: 30%;
+	width: 36%;
 	text-align: right;
 	margin-top: .5em;
 
@@ -30,7 +38,7 @@ NAVIGATION STYLES
 
 	@include breakpoint(laptop) {
 		float:left;
-		width: 66%;
+		width: 64%;
 	}
 }
 .topbar {
@@ -60,7 +68,7 @@ NAVIGATION STYLES
 		vertical-align: top;
 	}
 
-	.social-nav li a {
+	.nav.social-nav li a {
 		padding: 0 .75em;
 		vertical-align: middle;
 		color:$gray;
@@ -91,7 +99,7 @@ NAVIGATION STYLES
 		display: inline-block;
 		text-align: right;
 		color: $meta-color;
-		margin-right: 1em;
+		margin-right: .5em;
 
 		input, button {
 			margin:0;
@@ -120,9 +128,14 @@ NAVIGATION STYLES
 
 .menu-toggler {
 	border: none;
-	font-size:2em;
-	color:$white;
+	color:$link-color;
 	float:left;
+	vertical-align:middle;
+
+	i {
+		font-size:2em;
+		margin-right:.1em;
+	}
 
 	@include breakpoint(laptop) {
 		display:none;
@@ -204,11 +217,14 @@ NAVIGATION STYLES
 		list-style: none;
 		padding:0;
 		margin:0;
-
+		display: inline-block;
+		vertical-align: bottom;
+		line-height: 1em;
+		font-size: .9em;
 
 
 		a, a:visited {
-			display: block;
+			display: table-cell;
 			color: $black;
 			border: none;
 			padding: 0.75em;
@@ -239,38 +255,59 @@ NAVIGATION STYLES
 			float: left;
 			position: relative;
 
+			.sub-menu-content {
+				display: none;
+				border-top: 4px solid $link-color;
+				border-bottom: 1px solid $link-hover;
+				box-shadow: 0 2px rgba(230, 230, 230, 0.56);
+				background-color: $lightest-gray;
+				padding:1em 1.677em;
+				color:$dark-gray;
+				position: absolute;
+				z-index: 8999;
+				text-align:left;
+				width:auto;
+				min-width: 300px;
+				font-weight: bold;
+				font-family: $sans-serif;
+			}
+
 			ul.sub-menu,
 			ul.children {
-				background-color: $light-gray;
-				display: none;
-				font-size: .9em;
 				padding:0;
 				margin:0;
 				width:auto;
 				border-top: 0;
-				position: absolute;
-				z-index: 8999;
 				text-align:left;
-				box-shadow: .2em .2em .2em rgba(102, 102, 102, .3);
+				-webkit-columns: 2;
+				-webkit-columns: 2;
+				-moz-columns: 2;
+				columns: 2;
+				-webkit-column-gap: 1em;
+				-moz-column-gap:1em;
+				column-gap: 1em;
 
 				li {
+					float:none;
+					vertical-align: text-bottom;
+					margin-bottom: 0;
 
 					&:hover {
-						background-color:$lightest-gray;
+						color:$orange;
 					}
 
 					a {
-						padding-left: 1em;
+						padding:.5em .5em .5em 0;
 						border-right: 0;
 						display: block;
 						width: 180px;
 						line-height: 1.3em;
 						text-transform: none;
-						border-bottom: 1px dotted $white;
+						color:$blue;
 
 						&:hover,
 						&:focus {
-							color:$blue;
+							color:$orange;
 						}
 
 						&:link {}
@@ -309,6 +346,25 @@ NAVIGATION STYLES
 				}
 			}
 
+			ul.sub-menu ul.sub-menu {
+				-webkit-columns:  auto;
+				-webkit-columns:  auto;
+				-moz-columns:  auto;
+				columns: auto auto;
+				font-size: .9em;
+				font-weight: normal;
+				margin-bottom: 0;
+				padding-bottom:0;
+
+				a {
+					padding-left: 1em;
+				}
+
+				ul.sub-menu {
+					display: none;
+				}
+			}
+
 			&:hover > ul {
 				display: block;
 				visibility: visible;
@@ -317,6 +373,15 @@ NAVIGATION STYLES
 				@include transition(all .5s ease);
 			}
 
+			&:hover > .sub-menu-content {
+				display: block;
+				visibility: visible;
+				top:100%;
+				left:0;
+				@include transition(all .5s ease);
+			}
+
+
 			&:last-of-type:hover > ul {
 				display: block;
 				visibility: visible;
@@ -324,6 +389,8 @@ NAVIGATION STYLES
 				left:auto;
 			}
 		}
+
+		
 	} /* end .menu li */
 
 
@@ -335,4 +402,11 @@ NAVIGATION STYLES
 	@include breakpoint(laptop) {
 		display: inline-block;
 	}
+}
+
+.nav-desc {
+	display:inline-block;
+	margin-bottom:.75em;
+	font-size:1.1em;
+	line-height:1.4;
 }
